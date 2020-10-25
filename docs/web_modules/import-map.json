@@ -1,0 +1,8 @@
+{
+  "imports": {
+    "@fortawesome/fontawesome-svg-core": "./@fortawesome/fontawesome-svg-core.js",
+    "@fortawesome/free-solid-svg-icons": "./@fortawesome/free-solid-svg-icons.js",
+    "@stripe/stripe-js": "./@stripe/stripe-js.js",
+    "uhtml": "./uhtml.js"
+  }
+}
