@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "run:css": "postcss scss/*.scss --dir public/css --ext css",
+    "run:css": "postcss scss/*.scss --dir docs/css --ext css",
     "run:css::watch": "$1 --watch",
-    "mount:public": "mount public --to /"
+    "mount:public": "mount docs --to /"
   }
 }
