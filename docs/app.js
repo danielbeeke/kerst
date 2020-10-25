@@ -1,8 +1,8 @@
-import {loadStripe} from "/web_modules/@stripe/stripe-js.js";
+import {loadStripe} from "web_modules/@stripe/stripe-js.js";
 import Products from "./cards.js";
 import {fa} from "./Helpers.js";
-import {faShoppingCart, faTimes, faChevronRight} from "/web_modules/@fortawesome/free-solid-svg-icons.js";
-import {render, html} from "/web_modules/uhtml.js";
+import {faShoppingCart, faTimes, faChevronRight} from "web_modules/@fortawesome/free-solid-svg-icons.js";
+import {render, html} from "web_modules/uhtml.js";
 const shopId = "pk_test_51HDxVgDM7H4MIyD8kbH9mdvrHgW1V0o45wDhb15zM6b55DZP2mLeebWFaRUBr0NDCfQw0KHijFhxd1HKv4gXkTam001v7tho4R";
 class App {
   constructor() {
