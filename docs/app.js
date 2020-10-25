@@ -119,8 +119,8 @@ class App {
     stripe.redirectToCheckout({
       lineItems: this.createLineItems(),
       mode: "payment",
-      successUrl: location.protocol + "//" + location.host + "#success",
-      cancelUrl: location.protocol + "//" + location.host + "#cancel",
+      successUrl: location.protocol + "//" + location.host + location.pathname + "#success",
+      cancelUrl: location.protocol + "//" + location.host + location.pathname + "#cancel",
       billingAddressCollection: "required"
     }).then(function(result) {
     });
