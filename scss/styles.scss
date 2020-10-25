@@ -1,0 +1,188 @@
+:root {
+    --gray: #818080;
+    --gray-light: #d9d6d6;
+    --green: green;
+    --green-light: #a8d4a8;
+}
+
+body {
+    font-family: sans-serif;
+    height: 100%;
+    text-align: center;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+.no-button {
+    border: 0;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.site-title {
+    width: 100%;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    background: linear-gradient(white 50%, rgba(255, 255, 255, 0));
+    margin: 0;
+    padding: 20px;
+}
+
+.introduction {
+    max-width: 1220px;
+    padding: 0 20px;
+    margin: 30px auto;
+    text-align: left;
+    color: var(--gray);
+    line-height: 24px;
+    font-size: 16px;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: flex-end;
+    max-width: 1280px;
+    margin: 0 auto 30px;
+    padding: 20px;
+}
+
+.card {
+    display: flex;
+    text-align: left;
+    flex-direction: column;
+    flex: 1 1 200px;
+    margin: 30px 30px 40px;
+
+    .title {
+        color: var(--gray);
+        font-weight: normal;
+        font-size: 12px;
+        font-style: italic;
+        letter-spacing: 1px;
+    }
+
+    .image {
+        display: block;
+        max-width: 100%;
+        box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+    }
+
+    .add-to-basket {
+        user-select: none;
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        align-items: center;
+
+        .fa-shopping-cart {
+            width: 40px;
+            height: 40px;
+            display: block;
+            padding: 10px;
+        }
+
+        .quantity {
+            margin-left: 12px;
+            color: white;
+            font-size: 14px;
+            margin-right: -3px;
+        }
+
+        .remove-product-button {
+            color: var(--gray);
+            background: var(--gray-light);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+        }
+
+        .add-product-button {
+            display: flex;
+            justify-content: flex-end;
+            gap: 3px;
+            align-items: center;
+            background: var(--gray-light);
+            border-radius: 20px;
+
+            &:hover {
+                background: var(--green);
+
+                path {
+                    fill: white;
+                }
+            }
+        }
+
+        .price {
+            margin-right: auto;
+            color: var(--gray);
+        }
+    }
+
+    &.has-line-item .add-to-basket {
+        .add-product-button {
+            background: var(--green);
+
+            path {
+                fill: white;
+            }
+        }
+
+        .price {
+            color: var(--green);
+        }
+
+    }
+}
+
+.go-to-stripe-button {
+    position: sticky;
+    bottom: 30px;
+    font-size: 14px;
+    padding: 20px;
+    cursor: pointer;
+    border-radius: 30px;
+    background: var(--green-light);
+    margin-bottom: 100px;
+    border: 2px solid var(--green);
+
+    .total-price {
+        background: var(--green);
+        color: white;
+        font-size: 13px;
+        padding: 10px;
+        border-radius: 20px;
+        margin-right: 20px;
+    }
+
+    .fa-chevron-right {
+        margin-left: 10px;
+        path {
+            fill: var(--green);
+        }
+    }
+
+    &.disabled {
+        pointer-events: none;
+        border-color: var(--gray);
+        background: var(--gray-light);
+        color: var(--gray);
+
+        .fa-chevron-right {
+            path {
+                fill: var(--gray);
+            }
+        }
+    }
+}

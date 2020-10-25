@@ -1,0 +1,208 @@
+:root {
+    --gray: #818080;
+    --gray-light: #d9d6d6;
+    --green: green;
+    --green-light: #a8d4a8;
+}
+
+body {
+    font-family: sans-serif;
+    height: 100%;
+    text-align: center;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+.no-button {
+    border: 0;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.site-title {
+    width: 100%;
+    text-align: center;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background: linear-gradient(white 50%, rgba(255, 255, 255, 0));
+    margin: 0;
+    padding: 20px;
+}
+
+.introduction {
+    max-width: 1220px;
+    padding: 0 20px;
+    margin: 30px auto;
+    text-align: left;
+    color: #818080;
+    color: var(--gray);
+    line-height: 24px;
+    font-size: 16px;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: flex-end;
+    max-width: 1280px;
+    margin: 0 auto 30px;
+    padding: 20px;
+}
+
+.card {
+    display: flex;
+    text-align: left;
+    flex-direction: column;
+    flex: 1 1 200px;
+    margin: 30px 30px 40px;
+}
+
+.card .title {
+        color: #818080;
+        color: var(--gray);
+        font-weight: normal;
+        font-size: 12px;
+        font-style: italic;
+        letter-spacing: 1px;
+    }
+
+.card .image {
+        display: block;
+        max-width: 100%;
+        box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+    }
+
+.card .add-to-basket {
+        -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-end;
+        grid-gap: 10px;
+        gap: 10px;
+        align-items: center;
+    }
+
+.card .add-to-basket .fa-shopping-cart {
+            width: 40px;
+            height: 40px;
+            display: block;
+            padding: 10px;
+        }
+
+.card .add-to-basket .quantity {
+            margin-left: 12px;
+            color: white;
+            font-size: 14px;
+            margin-right: -3px;
+        }
+
+.card .add-to-basket .remove-product-button {
+            color: #818080;
+            color: var(--gray);
+            background: #d9d6d6;
+            background: var(--gray-light);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+        }
+
+.card .add-to-basket .add-product-button {
+            display: flex;
+            justify-content: flex-end;
+            grid-gap: 3px;
+            gap: 3px;
+            align-items: center;
+            background: #d9d6d6;
+            background: var(--gray-light);
+            border-radius: 20px;
+        }
+
+.card .add-to-basket .add-product-button:hover {
+                background: green;
+                background: var(--green);
+            }
+
+.card .add-to-basket .add-product-button:hover path {
+                    fill: white;
+                }
+
+.card .add-to-basket .price {
+            margin-right: auto;
+            color: #818080;
+            color: var(--gray);
+        }
+
+.card.has-line-item .add-to-basket .add-product-button {
+            background: green;
+            background: var(--green);
+        }
+
+.card.has-line-item .add-to-basket .add-product-button path {
+                fill: white;
+            }
+
+.card.has-line-item .add-to-basket .price {
+            color: green;
+            color: var(--green);
+        }
+
+.go-to-stripe-button {
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 30px;
+    font-size: 14px;
+    padding: 20px;
+    cursor: pointer;
+    border-radius: 30px;
+    background: #a8d4a8;
+    background: var(--green-light);
+    margin-bottom: 100px;
+    border: 2px solid green;
+    border: 2px solid var(--green);
+}
+
+.go-to-stripe-button .total-price {
+        background: green;
+        background: var(--green);
+        color: white;
+        font-size: 13px;
+        padding: 10px;
+        border-radius: 20px;
+        margin-right: 20px;
+    }
+
+.go-to-stripe-button .fa-chevron-right {
+        margin-left: 10px;
+    }
+
+.go-to-stripe-button .fa-chevron-right path {
+            fill: green;
+            fill: var(--green);
+        }
+
+.go-to-stripe-button.disabled {
+        pointer-events: none;
+        border-color: #818080;
+        border-color: var(--gray);
+        background: #d9d6d6;
+        background: var(--gray-light);
+        color: #818080;
+        color: var(--gray);
+    }
+
+.go-to-stripe-button.disabled .fa-chevron-right path {
+                fill: #818080;
+                fill: var(--gray);
+            }
