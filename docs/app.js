@@ -46,7 +46,7 @@ class App {
         <img onclick="${() => {
           zoomedProduct.zoom = false
           this.draw()
-        }}" class="zoomed-product" src="${'/images/' + zoomedProduct.image}">
+        }}" class="zoomed-product" src="${'images/' + zoomedProduct.image}">
       ` : ''}
       
       <div class="cards">
@@ -60,7 +60,7 @@ class App {
             <img onclick="${() => {
               product.zoom = !product.zoom
               this.draw()
-            }}" class="image" src="${'/images/' + product.image}">
+            }}" class="image" src="${'images/' + product.image}">
            
             <div class="add-to-basket">
               <span class="price">${this.currencyFormat.format(lineItem ? product.price * lineItem.quantity : product.price)}</span>
