@@ -88,7 +88,7 @@ class App {
     `;
   }
   templateSuccess() {
-    return html`<h1>Woop</h1>`;
+    return html`<h1>Dankjewel voor je aanschaf.</h1>`;
   }
   increaseQuantityForProduct(product) {
     let lineItem = this.basket.get(product);

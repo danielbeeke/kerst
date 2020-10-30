@@ -95,7 +95,13 @@ class App {
   }
 
   templateSuccess () {
-    return html`<h1>Woop</h1>`
+    return html`
+      <h1 class="site-title">Dankjewel voor je bestelling.</h1>
+      <button onclick="${() => {
+        location.hash = ''
+        this.draw()
+      }}">Terug naar het overzicht</button>
+    `
   }
 
   increaseQuantityForProduct (product) {
