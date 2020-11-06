@@ -1,9 +1,9 @@
-import { loadStripe } from '@stripe/stripe-js'
+import { loadStripe } from './web_modules/@stripe/stripe-js.js'
 import Products from './cards.js'
 import { fa } from './Helpers.js'
-import { faShoppingCart, faTimes, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { faShoppingCart, faTimes, faChevronRight } from './web_modules/@fortawesome/free-solid-svg-icons.js'
 
-import { render, html } from 'uhtml'
+import { render, html } from './web_modules/uhtml.js'
 
 const shopId = 'pk_live_51HDxVgDM7H4MIyD87ABr6smKDQJBODpzdva3R5F6ij2RGVQptfopicFRc8zJDStQHstacl2oziX2jpZf2B5yEJSR00x2xBsX13'
 
