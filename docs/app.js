@@ -123,7 +123,7 @@ class App {
 
   createLineItems () {
     return Array.from(this.basket.entries()).map(([product, lineItem]) => {
-      return { price: product.id, quantity: lineItem.quantity }
+      return { price: product.prices[0].id, quantity: lineItem.quantity }
     })
   }
 
