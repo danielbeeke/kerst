@@ -23,6 +23,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@stripe/stripe-js": "^1.10.0",
     "postcss-preset-env": "^6.7.0",
+    "stripe": "^8.120.0",
     "uhtml": "^2.1.2"
   }
 }

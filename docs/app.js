@@ -52,18 +52,19 @@ class App {
       <div class="cards">
         ${this.products.map(product => {
           const lineItem = this.basket.get(product)
+          const price = product.prices[0].unit_amount / 100
           
           return html`
           <div class="${'card' + (lineItem ? ' has-line-item' : '')}">
-            <h3 class="title">${product.title}</h3>
+            <h3 class="title">${product.name}</h3>
 
             <img onclick="${() => {
               product.zoom = !product.zoom
               this.draw()
-            }}" class="image" src="${'images/' + product.image}">
+            }}" class="image" src="${product.images[0]}">
            
             <div class="add-to-basket">
-              <span class="price">${this.currencyFormat.format(lineItem ? product.price * lineItem.quantity : product.price)}</span>
+              <span class="price">${this.currencyFormat.format(lineItem ? price * lineItem.quantity : price)}</span>
 
               ${lineItem ? html`
                 <button class="remove-product-button no-button" onclick="${() => {
@@ -114,7 +115,8 @@ class App {
   totalPrice () {
     let total = 0
     Array.from(this.basket.entries()).forEach(([product, lineItem]) => {
-      total += product.price * lineItem.quantity
+      const price = product.prices[0].unit_amount / 100
+      total += price * lineItem.quantity
     })
     return total
   }
