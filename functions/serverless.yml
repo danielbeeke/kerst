@@ -1,0 +1,7 @@
+org: danielbeeke
+app: kerst
+component: express
+name: stripe-session
+
+inputs:
+  src: ./

@@ -222,6 +222,27 @@ html {
                 fill: var(--gray);
             }
 
+.go-to-stripe-button.is-working:after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background-image: linear-gradient(
+                            -45deg,
+                            rgba(255, 255, 255, .2) 25%,
+                            transparent 25%,
+                            transparent 50%,
+                            rgba(255, 255, 255, .2) 50%,
+                            rgba(255, 255, 255, .2) 75%,
+                            transparent 75%,
+                            transparent
+            );
+            z-index: 1;
+            background-size: 50px 50px;
+            -webkit-animation: move 2s linear infinite;
+                    animation: move 2s linear infinite;
+            overflow: hidden;
+        }
+
 .zoomed-product {
     cursor: zoom-out;
     position: fixed;
@@ -234,4 +255,22 @@ html {
     left: 0;
     padding: 4vmax;
     z-index: 4;
+}
+
+@-webkit-keyframes move {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 50px 50px;
+    }
+}
+
+@keyframes move {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 50px 50px;
+    }
 }

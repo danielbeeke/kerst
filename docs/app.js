@@ -5,10 +5,13 @@ import { faShoppingCart, faTimes, faChevronRight } from './web_modules/@fortawes
 
 import { render, html } from './web_modules/uhtml.js'
 
-const shopId = 'pk_live_51HDxVgDM7H4MIyD87ABr6smKDQJBODpzdva3R5F6ij2RGVQptfopicFRc8zJDStQHstacl2oziX2jpZf2B5yEJSR00x2xBsX13'
+const shopIdLive = 'pk_live_51HDxVgDM7H4MIyD87ABr6smKDQJBODpzdva3R5F6ij2RGVQptfopicFRc8zJDStQHstacl2oziX2jpZf2B5yEJSR00x2xBsX13'
+const shopIdTest = 'pk_test_51HDxVgDM7H4MIyD8kbH9mdvrHgW1V0o45wDhb15zM6b55DZP2mLeebWFaRUBr0NDCfQw0KHijFhxd1HKv4gXkTam001v7tho4R'
+const shopId = location.hostname === 'kerst.wilmavis.nl' ? shopIdLive : shopIdTest
 
 class App {
   constructor() {
+    this.isCreatingSession = false
     this.products = Products
     for (const product of this.products) {
       product.zoom = false
@@ -46,7 +49,7 @@ class App {
         <img onclick="${() => {
           zoomedProduct.zoom = false
           this.draw()
-        }}" class="zoomed-product" src="${'images/' + zoomedProduct.image}">
+        }}" class="zoomed-product" src="${zoomedProduct.images[0]}">
       ` : ''}
       
       <div class="cards">
@@ -87,10 +90,13 @@ class App {
         })}       
       </div>
       
-      <button class="${'go-to-stripe-button' + (!this.totalPrice() ? ' disabled' : '')}" onclick="${() => this.checkout()}">
+      <button class="${'go-to-stripe-button' + (!this.totalPrice() ? ' disabled' : '') + (this.isCreatingSession ? ' is-working' : '')}" onclick="${() => this.checkout()}">
         ${this.totalPrice() ? html`<span class="total-price">${this.currencyFormat.format(this.totalPrice())}</>` : ''}
-        <span class="text">Verder naar afrekenen</span>
-        ${fa(faChevronRight)}
+        ${this.isCreatingSession ? html`
+        <span class="text">Bezig met doorsturen...</span>
+        ` : html`
+        <span class="text">Verder naar afrekenen</span> ${fa(faChevronRight)}
+        `}
       </button>
     `
   }
@@ -128,20 +134,31 @@ class App {
   }
 
   async checkout () {
+    this.isCreatingSession = true
+    this.draw()
+
     const stripe = await loadStripe(shopId, {
       locale: 'nl'
     });
 
+    const response = await fetch('http://wilmavis.nl:4242/create-checkout-session', {
+      method: 'POST',
+      body: JSON.stringify({
+        lineItems: this.createLineItems(),
+        origin: location
+      }),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    })
+
+    const json = await response.json()
+
     stripe.redirectToCheckout({
-      lineItems: this.createLineItems(),
-      mode: 'payment',
-      successUrl: location.protocol + '//' + location.host + '#success',
-      cancelUrl: location.protocol + '//' + location.host + '#cancel',
-      billingAddressCollection: 'required',
+      sessionId: json.id
     }).then(function (result) {
-      // If `redirectToCheckout` fails due to a browser or network
-      // error, display the localized error message to your customer
-      // using `result.error.message`.
+      location.hash = '#cancel'
     });
 
   }
