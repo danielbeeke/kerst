@@ -6,8 +6,7 @@ provider:
   region: eu-central-1
 package:
   include:
-    - config/**
-    - node_modules/**
+    - helpers.js
   exclude:
     - package.json
 
