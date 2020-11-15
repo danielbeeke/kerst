@@ -1,4 +1,5 @@
 .idea
 node_modules
-settings.js
+functions/settings.js
 functions/node_modules
+functions/.serverless

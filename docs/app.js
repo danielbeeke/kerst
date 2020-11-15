@@ -7,7 +7,9 @@ import { render, html } from './web_modules/uhtml.js'
 
 const shopIdLive = 'pk_live_51HDxVgDM7H4MIyD87ABr6smKDQJBODpzdva3R5F6ij2RGVQptfopicFRc8zJDStQHstacl2oziX2jpZf2B5yEJSR00x2xBsX13'
 const shopIdTest = 'pk_test_51HDxVgDM7H4MIyD8kbH9mdvrHgW1V0o45wDhb15zM6b55DZP2mLeebWFaRUBr0NDCfQw0KHijFhxd1HKv4gXkTam001v7tho4R'
-const shopId = location.hostname === 'kerst.wilmavis.nl' ? shopIdLive : shopIdTest
+const env = location.hostname === 'kerst.wilmavis.nl' ? 'prod' : 'test'
+const shopId = env === 'prod' ? shopIdLive : shopIdTest
+const awsApi = 'https://znpinus3i4.execute-api.eu-central-1.amazonaws.com'
 
 class App {
   constructor() {
@@ -141,7 +143,7 @@ class App {
       locale: 'nl'
     });
 
-    const response = await fetch('http://wilmavis.nl:4242/create-checkout-session', {
+    const response = await fetch(awsApi + '/' + env + '/create-session', {
       method: 'POST',
       body: JSON.stringify({
         lineItems: this.createLineItems(),

@@ -1,5 +1,5 @@
 (async () => {
-  const stripe = require('stripe')(require('./settings.js').key)
+  const stripe = require('stripe')(require('./functions/settings.js').key)
   const fs = require('fs')
 
   const products = await stripe.products.list()
