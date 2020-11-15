@@ -14,7 +14,7 @@ const awsApi = 'https://znpinus3i4.execute-api.eu-central-1.amazonaws.com'
 class App {
   constructor() {
     this.isCreatingSession = false
-    this.products = Products
+    this.products = Products[env]
     for (const product of this.products) {
       product.zoom = false
     }
