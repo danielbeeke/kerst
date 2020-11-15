@@ -1,6 +1,6 @@
 const fs = require('fs')
 const settings = require('./functions/settings.js')
-const getEnvCards = async (key) => {
+const getProducts = async (key) => {
   const stripe = require('stripe')(key)
 
   const products = await stripe.products.list()
@@ -13,6 +13,13 @@ const getEnvCards = async (key) => {
   return products.data
 }
 
+const getPromotionCodes = async (key) => {
+  const stripe = require('stripe')(key)
+  const promotionCodes = await stripe.promotionCodes.list()
+  return promotionCodes.data
+}
+
+
 const keys = {
   prod: settings.prodKey,
   test: settings.testKey,
@@ -21,11 +28,14 @@ const keys = {
 async function writeFile () {
   const data = {}
   for (const [env, key] of Object.entries(keys)) {
-    data[env] = await getEnvCards(key)
+    data[env] = {
+      products: await getProducts(key),
+      promotionCodes: await getPromotionCodes(key)
+    }
   }
 
   const json = JSON.stringify(data, null, 2)
-  fs.writeFileSync('./docs/cards.js', 'export default ' + json , 'utf-8')
+  fs.writeFileSync('./docs/data.js', 'export default ' + json , 'utf-8')
 }
 
 writeFile()

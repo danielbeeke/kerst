@@ -4,7 +4,7 @@ const settings = require('./settings.js')
 const request = require('helpers.js').request
 
 async function _createSession (body, stripeApiKey) {
-  const session = await request('https://api.stripe.com/v1/checkout/sessions', 'POST', {
+  const formData = {
     payment_method_types: ['ideal'],
     mode: 'payment',
     locale: 'nl',
@@ -14,7 +14,17 @@ async function _createSession (body, stripeApiKey) {
     },
     success_url: body.origin.origin + '#success',
     cancel_url: body.origin.origin + '#cancel',
-  }, stripeApiKey)
+  }
+
+  if (body.coupons) {
+    formData.discounts = body.coupons.map(coupon => {
+      return {
+        promotion_code: coupon
+      }
+    })
+  }
+
+  const session = await request('https://api.stripe.com/v1/checkout/sessions', 'POST', formData, stripeApiKey)
 
   return {
     statusCode: 200,

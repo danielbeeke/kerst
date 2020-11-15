@@ -274,3 +274,8 @@ html {
         background-position: 50px 50px;
     }
 }
+
+.old-price {
+    text-decoration: line-through;
+    opacity: .4;
+}
