@@ -20,6 +20,7 @@ class App {
 
   page () {
     return html`
+      <h1 class="site-title">Wilma Vis</h1>
       <stripe-cards category="postcard" env="${env}" src="./data.js" shop="${shopId}" session-url="${awsApi}" />
     `
   }
