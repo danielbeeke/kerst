@@ -365,6 +365,115 @@ export default {
     ],
     "promotionCodes": [
       {
+        "id": "promo_1HoEi6DM7H4MIyD8PidcQYIh",
+        "object": "promotion_code",
+        "active": true,
+        "code": "10tje",
+        "coupon": {
+          "id": "W5q2uquJ",
+          "object": "coupon",
+          "amount_off": 300,
+          "created": 1605560041,
+          "currency": "eur",
+          "duration": "forever",
+          "duration_in_months": null,
+          "livemode": false,
+          "max_redemptions": null,
+          "metadata": {
+            "category": "postcard"
+          },
+          "name": "tientje",
+          "percent_off": null,
+          "redeem_by": null,
+          "times_redeemed": 0,
+          "valid": true
+        },
+        "created": 1605560042,
+        "customer": null,
+        "expires_at": null,
+        "livemode": false,
+        "max_redemptions": null,
+        "metadata": {},
+        "restrictions": {
+          "first_time_transaction": false,
+          "minimum_amount": 1000,
+          "minimum_amount_currency": "eur"
+        },
+        "times_redeemed": 0
+      },
+      {
+        "id": "promo_1HoERuDM7H4MIyD8wsxAjxHI",
+        "object": "promotion_code",
+        "active": true,
+        "code": "KXU6JBCI",
+        "coupon": {
+          "id": "Ns2rYJZu",
+          "object": "coupon",
+          "amount_off": 1000,
+          "created": 1605559037,
+          "currency": "eur",
+          "duration": "forever",
+          "duration_in_months": null,
+          "livemode": false,
+          "max_redemptions": null,
+          "metadata": {
+            "category": "postcard"
+          },
+          "name": "30 or more",
+          "percent_off": null,
+          "redeem_by": null,
+          "times_redeemed": 0,
+          "valid": true
+        },
+        "created": 1605559038,
+        "customer": null,
+        "expires_at": null,
+        "livemode": false,
+        "max_redemptions": null,
+        "metadata": {},
+        "restrictions": {
+          "first_time_transaction": false,
+          "minimum_amount": 3000,
+          "minimum_amount_currency": "eur"
+        },
+        "times_redeemed": 0
+      },
+      {
+        "id": "promo_1HoEKdDM7H4MIyD8cHlDf6tD",
+        "object": "promotion_code",
+        "active": false,
+        "code": "30MORE",
+        "coupon": {
+          "id": "94glT2VS",
+          "object": "coupon",
+          "amount_off": 500,
+          "created": 1605558586,
+          "currency": "eur",
+          "duration": "forever",
+          "duration_in_months": null,
+          "livemode": false,
+          "max_redemptions": null,
+          "metadata": {},
+          "name": "30 or more",
+          "percent_off": null,
+          "redeem_by": null,
+          "times_redeemed": 0,
+          "valid": false
+        },
+        "created": 1605558587,
+        "customer": null,
+        "expires_at": null,
+        "livemode": false,
+        "max_redemptions": null,
+        "metadata": {},
+        "restrictions": {
+          "first_time_transaction": false,
+          "minimum_amount": 3000,
+          "minimum_amount_currency": "eur"
+        },
+        "times_redeemed": 0
+      },
+      {
         "id": "promo_1HnpFvDM7H4MIyD81QYJUvsB",
         "object": "promotion_code",
         "active": true,

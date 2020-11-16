@@ -17,6 +17,7 @@ const awsApi = env === 'prod' ? 'https://5ml1hmy4s7.execute-api.eu-central-1.ama
 
 class App {
   constructor() {
+    this.category = 'postcard'
     this.isCreatingSession = false
     this.products = Data[env].products
     for (const product of this.products) {
@@ -52,7 +53,7 @@ class App {
       <p class="introduction">Mauris lorem lectus, sodales a vulputate eu, semper ut odio. Integer consequat lectus a dui ornare, ut vulputate nisl auctor. Vestibulum id metus id nisi lobortis ornare in sit amet arcu. Aenean congue tristique sem ut euismod. Proin nec ultrices leo. Proin at quam eu erat elementum condimentum sit amet accumsan est. Donec sem neque, varius ut sagittis at, mattis volutpat magna</p>
       
       ${this.templateZoomedCard(zoomedProduct)}      
-      ${this.templateCards('postcard', this.products)}
+      ${this.templateCards(this.products)}
       ${this.templateButtonBuy()}
     `
   }
@@ -72,8 +73,6 @@ class App {
     const totalPrice = this.totalPrice()
     const discountedPrice = this.discountedPrice(totalPrice)
 
-    console.log(discountedPrice)
-
     return html`
     <button class="${'go-to-stripe-button' + (!totalPrice ? ' disabled' : '') + (this.isCreatingSession ? ' is-working' : '')}" onclick="${() => this.checkout()}">
       ${this.totalPrice() ? html`
@@ -90,8 +89,8 @@ class App {
     </button>`
   }
 
-  templateCards (category, products) {
-    const filteredProducts = products.filter(product => product.metadata.category === category && product.active)
+  templateCards (products) {
+    const filteredProducts = products.filter(product => product.metadata.category === this.category && product.active)
 
     return html`
       <div class="cards">
@@ -160,15 +159,20 @@ class App {
     return total
   }
 
-  getActivePromotionCodes (totalPrice) {
-    return Data[env].promotionCodes.filter(promotionCode => promotionCode.active && totalPrice > promotionCode.restrictions.minimum_amount / 100)
+  getActivePromotionCode (totalPrice) {
+    return Data[env].promotionCodes
+    .sort((a, b) => a.restrictions.minimum_amount > b.restrictions.minimum_amount)
+    .filter(promotionCode => promotionCode.active &&
+      totalPrice > promotionCode.restrictions.minimum_amount / 100 &&
+      promotionCode.coupon?.metadata?.category === this.category)
+    .pop()
   }
 
   discountedPrice (totalPrice) {
     let discounted = 0
-    const promotionCodes = this.getActivePromotionCodes(totalPrice)
+    const promotionCode = this.getActivePromotionCode(totalPrice)
 
-    for (const promotionCode of promotionCodes) {
+    if (promotionCode) {
       discounted += promotionCode.coupon.amount_off / 100
     }
 
@@ -191,11 +195,13 @@ class App {
 
     const totalPrice = this.totalPrice()
 
+    const promotionCode = this.getActivePromotionCode(totalPrice)
+
     const response = await fetch(awsApi + '/' + env + '/create-session', {
       method: 'POST',
       body: JSON.stringify({
         lineItems: this.createLineItems(),
-        coupons: this.getActivePromotionCodes(totalPrice).map(promo => promo.id),
+        coupon: promotionCode ? promotionCode.id : null,
         origin: location
       }),
       headers: {

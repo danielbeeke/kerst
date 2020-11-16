@@ -16,12 +16,10 @@ async function _createSession (body, stripeApiKey) {
     cancel_url: body.origin.origin + '#cancel',
   }
 
-  if (body.coupons) {
-    formData.discounts = body.coupons.map(coupon => {
-      return {
-        promotion_code: coupon
-      }
-    })
+  if (body.coupon) {
+    formData.discounts = [{
+      promotion_code: body.coupon
+    }]
   }
 
   const session = await request('https://api.stripe.com/v1/checkout/sessions', 'POST', formData, stripeApiKey)
