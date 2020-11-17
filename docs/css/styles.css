@@ -5,6 +5,7 @@
     --gray-light: #d9d6d6;
     --green: green;
     --green-light: #a8d4a8;
+    --speed: .3s;
 }
 
 body {
@@ -46,7 +47,7 @@ html {
     position: -webkit-sticky;
     position: sticky;
     top: -20px;
-    background: linear-gradient(white 50%, rgba(255, 255, 255, 0));
+    background: linear-gradient(white 0%, rgba(255, 255, 255, .7) 50%, rgba(255, 255, 255, 0));
     margin: 0;
     padding: 50px;
 }
@@ -63,21 +64,42 @@ html {
 }
 
 .cards {
-    display: flex;
-    flex-wrap: wrap;
+    text-align: center;
     width: 100%;
-    align-items: flex-end;
-    max-width: 1280px;
-    margin: 0 auto 30px;
-    padding: 20px;
+    max-width: 980px;
+    margin: 0 auto 10px;
+    padding: 10px;
+    grid-column-gap: 50px;
+    -moz-column-gap: 50px;
+         column-gap: 50px;
+
 }
 
+@media only screen and (min-width: 721px) {
+
+.cards {
+        -moz-columns: 2;
+             columns: 2
+
+}
+    }
+
+@media only screen and (min-width: 721px) {
+
+.cards {
+        -moz-columns: 2;
+             columns: 2
+
+}
+    }
+
 .card {
+    align-self: center;
     display: flex;
     text-align: left;
     flex-direction: column;
     flex: 1 1 200px;
-    margin: 30px 30px 40px;
+    margin-bottom: 30px;
 }
 
 .card .title {
@@ -90,10 +112,15 @@ html {
     }
 
 .card .image {
+        background: #d9d6d6;
+        background: var(--gray-light);
         display: block;
         max-width: 100%;
-        box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+        box-shadow: 0 0 5px rgba(0, 0, 0, .2);
         cursor: zoom-in;
+        transition: all .3s ease-in-out;
+        transition: all var(--speed) ease-in-out;
+        background-size: contain;
     }
 
 .card .add-to-basket {
@@ -101,11 +128,12 @@ html {
            -moz-user-select: none;
             -ms-user-select: none;
                 user-select: none;
-        margin-top: 20px;
+        margin-top: auto;
         display: flex;
         justify-content: flex-end;
         grid-gap: 10px;
         gap: 10px;
+        padding-top: 20px;
         align-items: center;
     }
 
@@ -173,19 +201,36 @@ html {
             color: var(--green);
         }
 
+.card.portrait .image {
+            margin: 0 auto;
+            width: 80%;
+        }
+
+.card.portrait .add-to-basket,
+        .card.portrait .title {
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+.card:hover .image {
+        box-shadow: 0 0 15px rgba(0, 0, 0, .3);
+    }
+
 .go-to-stripe-button {
-    position: -webkit-sticky;
-    position: sticky;
-    bottom: 30px;
     font-size: 14px;
     padding: 20px;
     cursor: pointer;
     border-radius: 30px;
     background: #a8d4a8;
     background: var(--green-light);
-    margin-bottom: 100px;
+    transition: all .3s ease-in-out;
+    transition: all var(--speed) ease-in-out;
     border: 2px solid green;
     border: 2px solid var(--green);
+    pointer-events: all;
+    position: relative;
+    overflow: hidden;
 }
 
 .go-to-stripe-button .total-price {
@@ -196,6 +241,8 @@ html {
         padding: 10px;
         border-radius: 20px;
         margin-right: 20px;
+        transition: all .3s ease-in-out;
+        transition: all var(--speed) ease-in-out;
     }
 
 .go-to-stripe-button .fa-chevron-right {
@@ -205,6 +252,8 @@ html {
 .go-to-stripe-button .fa-chevron-right path {
             fill: green;
             fill: var(--green);
+            transition: all .3s ease-in-out;
+            transition: all var(--speed) ease-in-out;
         }
 
 .go-to-stripe-button.disabled {
@@ -220,6 +269,16 @@ html {
 .go-to-stripe-button.disabled .fa-chevron-right path {
                 fill: #818080;
                 fill: var(--gray);
+            }
+
+.go-to-stripe-button:hover {
+        background: green;
+        background: var(--green);
+        color: white;
+    }
+
+.go-to-stripe-button:hover .fa-chevron-right path {
+                fill: white;
             }
 
 .go-to-stripe-button.is-working:after {
@@ -243,18 +302,62 @@ html {
             overflow: hidden;
         }
 
+.buy-information {
+    margin: 10px;
+    display: inline-block;
+    pointer-events: none;
+    background: #d9d6d6;
+    background: var(--gray-light);
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 1px solid green;
+    border: 1px solid var(--green);
+}
+
+.pay-footer {
+    padding-top: 30px;
+    position: -webkit-sticky;
+    position: sticky;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+    bottom: 30px;
+    pointer-events: none;
+}
+
+@media only screen and (min-width: 721px) {
+
+.pay-footer {
+        flex-direction: row
+}
+    }
+
 .zoomed-product {
     cursor: zoom-out;
     position: fixed;
-    height: 100vh;
-    width: 100vw;
-    -o-object-fit: contain;
-       object-fit: contain;
-    max-width: none;
-    top: 0;
-    left: 0;
-    padding: 4vmax;
+    max-width: 100%;
+    max-height: 100%;
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 4;
+}
+
+.zoomed-product-image {
+    background-color: #d9d6d6;
+    background-color: var(--gray-light);
+    max-width: calc(100vw - 4vmax);
+    max-height: calc(100vh - 4vmax);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 @-webkit-keyframes move {
@@ -278,4 +381,10 @@ html {
 .old-price {
     text-decoration: line-through;
     opacity: .4;
+}
+
+@media only screen and (max-width: 720px) {
+    .card .image {
+        pointer-events: none;
+    }
 }

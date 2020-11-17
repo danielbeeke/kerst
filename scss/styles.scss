@@ -5,6 +5,7 @@
     --gray-light: #d9d6d6;
     --green: green;
     --green-light: #a8d4a8;
+    --speed: .3s;
 }
 
 body {
@@ -47,7 +48,7 @@ html {
     text-align: center;
     position: sticky;
     top: -20px;
-    background: linear-gradient(white 50%, rgba(255, 255, 255, 0));
+    background: linear-gradient(white 0%, rgba(255, 255, 255, .7) 50%, rgba(255, 255, 255, 0));
     margin: 0;
     padding: 50px;
 }
@@ -63,21 +64,30 @@ html {
 }
 
 .cards {
-    display: flex;
-    flex-wrap: wrap;
+    text-align: center;
     width: 100%;
-    align-items: flex-end;
-    max-width: 1280px;
-    margin: 0 auto 30px;
-    padding: 20px;
+    max-width: 980px;
+    margin: 0 auto 10px;
+    padding: 10px;
+    column-gap: 50px;
+
+    @media only screen and (min-width: 721px) {
+        columns: 2;
+    }
+
+    @media only screen and (min-width: 721px) {
+        columns: 2;
+    }
+
 }
 
 .card {
+    align-self: center;
     display: flex;
     text-align: left;
     flex-direction: column;
     flex: 1 1 200px;
-    margin: 30px 30px 40px;
+    margin-bottom: 30px;
 
     .title {
         color: var(--gray);
@@ -88,18 +98,22 @@ html {
     }
 
     .image {
+        background: var(--gray-light);
         display: block;
         max-width: 100%;
-        box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+        box-shadow: 0 0 5px rgba(0, 0, 0, .2);
         cursor: zoom-in;
+        transition: all var(--speed) ease-in-out;
+        background-size: contain;
     }
 
     .add-to-basket {
         user-select: none;
-        margin-top: 20px;
+        margin-top: auto;
         display: flex;
         justify-content: flex-end;
         gap: 10px;
+        padding-top: 20px;
         align-items: center;
 
         .fa-shopping-cart {
@@ -161,18 +175,37 @@ html {
         }
 
     }
+
+    &.portrait {
+        .image {
+            margin: 0 auto;
+            width: 80%;
+        }
+
+        .add-to-basket,
+        .title {
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    &:hover .image {
+        box-shadow: 0 0 15px rgba(0, 0, 0, .3);
+    }
 }
 
 .go-to-stripe-button {
-    position: sticky;
-    bottom: 30px;
     font-size: 14px;
     padding: 20px;
     cursor: pointer;
     border-radius: 30px;
     background: var(--green-light);
-    margin-bottom: 100px;
+    transition: all var(--speed) ease-in-out;
     border: 2px solid var(--green);
+    pointer-events: all;
+    position: relative;
+    overflow: hidden;
 
     .total-price {
         background: var(--green);
@@ -181,12 +214,14 @@ html {
         padding: 10px;
         border-radius: 20px;
         margin-right: 20px;
+        transition: all var(--speed) ease-in-out;
     }
 
     .fa-chevron-right {
         margin-left: 10px;
         path {
             fill: var(--green);
+            transition: all var(--speed) ease-in-out;
         }
     }
 
@@ -199,6 +234,17 @@ html {
         .fa-chevron-right {
             path {
                 fill: var(--gray);
+            }
+        }
+    }
+
+    &:hover {
+        background: var(--green);
+        color: white;
+
+        .fa-chevron-right {
+            path {
+                fill: white;
             }
         }
     }
@@ -226,17 +272,56 @@ html {
     }
 }
 
+.buy-information {
+    margin: 10px;
+    display: inline-block;
+    pointer-events: none;
+    background: var(--gray-light);
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 1px solid var(--green);
+}
+
+.pay-footer {
+    padding-top: 30px;
+    position: sticky;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+    bottom: 30px;
+    pointer-events: none;
+
+
+    @media only screen and (min-width: 721px) {
+        flex-direction: row;
+    }
+}
+
 .zoomed-product {
     cursor: zoom-out;
     position: fixed;
-    height: 100vh;
-    width: 100vw;
-    object-fit: contain;
-    max-width: none;
-    top: 0;
-    left: 0;
-    padding: 4vmax;
+    max-width: 100%;
+    max-height: 100%;
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 4;
+}
+
+.zoomed-product-image {
+    background-color: var(--gray-light);
+    max-width: calc(100vw - 4vmax);
+    max-height: calc(100vh - 4vmax);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 @keyframes move {
@@ -251,4 +336,10 @@ html {
 .old-price {
     text-decoration: line-through;
     opacity: .4;
+}
+
+@media only screen and (max-width: 720px) {
+    .card .image {
+        pointer-events: none;
+    }
 }

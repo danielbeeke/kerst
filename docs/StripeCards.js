@@ -11,6 +11,7 @@ class StripeCards extends HTMLElement {
 
   async connectedCallback () {
     this.env = this.getAttribute('env')
+    this.shippingCosts = this.getAttribute('shipping-costs')
     this.shop = this.getAttribute('shop')
     this.category = this.getAttribute('category')
     this.sessionUrl = this.getAttribute('session-url')
@@ -41,7 +42,12 @@ class StripeCards extends HTMLElement {
 
     return html`
       ${zoomedProduct ? html`
-        <img onclick="${() => { zoomedProduct.zoom = false; this.draw() }}" class="zoomed-product" src="${zoomedProduct.images[0]}">
+        <div 
+        onclick="${() => { zoomedProduct.zoom = false; this.draw() }}" 
+        class="zoomed-product" 
+        style="${'padding-bottom: ' + (zoomedProduct.image.height / zoomedProduct.image.width * 100) + '%;'}">
+        <img class="zoomed-product-image" src="${zoomedProduct.images[0]}">
+        </div>
       ` : ''}
     `
   }
@@ -49,6 +55,8 @@ class StripeCards extends HTMLElement {
   templateButtonBuy () {
     const totalPrice = this.totalPrice()
     const discountedPrice = this.discountedPrice(totalPrice)
+    const totalQuantity = this.totalQuantity()
+
     const price = html`
     <span class="total-price">
       ${discountedPrice ? html`
@@ -58,14 +66,17 @@ class StripeCards extends HTMLElement {
     </span>`
 
     return html`
-    <button class="${'go-to-stripe-button' + (!totalPrice ? ' disabled' : '') + (this.isCreatingSession ? ' is-working' : '')}" onclick="${() => this.checkout()}">
-      ${this.totalPrice() ? price : ''}
-      ${this.isCreatingSession ? html`
-      <span class="text">Bezig met doorsturen...</span>
-      ` : html`
-      <span class="text">Verder naar afrekenen</span> ${fa(faChevronRight)}
-      `}
-    </button>`
+    <div class="pay-footer">
+      ${totalQuantity ? html`<div class="buy-information">${totalQuantity} items, totaal: ${price}</div>` : ''}
+  
+      <button class="${'go-to-stripe-button' + (!totalPrice ? ' disabled' : '') + (this.isCreatingSession ? ' is-working' : '')}" onclick="${() => this.checkout()}">
+        ${this.isCreatingSession ? html`
+        <span class="text">Bezig met doorsturen...</span>
+        ` : html`
+        <span class="text">Door naar bevestigen</span> ${fa(faChevronRight)}
+        `}
+      </button>
+    </div>`
   }
 
   templateCards () {
@@ -75,11 +86,16 @@ class StripeCards extends HTMLElement {
           const lineItem = this.basket.get(product)
           const price = product.prices[0].unit_amount / 100
     
+          const orientation = product.image.height > product.image.width ? 'portrait' : 'landscape'
+      
           return html`
-            <div class="${'card' + (lineItem ? ' has-line-item' : '')}">
+            <div class="${'card' + (lineItem ? ' has-line-item' : '') + ' ' + orientation}">
               <h3 class="title">${product.name}</h3>
     
-              <img onclick="${() => { product.zoom = !product.zoom; this.draw() }}" class="image" src="${product.images[0]}">
+              <div 
+              style="${'padding-bottom: ' + (product.image.height / product.image.width * 100 * (orientation === 'portrait' ? .8 : 1)) + '%; background-image: url("data:image/png;base64,' + product.thumb + '")'}" 
+              onclick="${() => { product.zoom = !product.zoom; this.draw() }}" 
+              class="image"></div>
              
               <div class="add-to-basket">
                 <span class="price">${this.currencyFormat.format(lineItem ? price * lineItem.quantity : price)}</span>
@@ -111,6 +127,15 @@ class StripeCards extends HTMLElement {
     Array.from(this.basket.entries()).forEach(([product, lineItem]) => {
       const price = product.prices[0].unit_amount / 100
       total += price * lineItem.quantity
+    })
+
+    return total
+  }
+
+  totalQuantity () {
+    let total = 0
+    Array.from(this.basket.entries()).forEach(([product, lineItem]) => {
+      total += lineItem.quantity
     })
 
     return total

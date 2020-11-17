@@ -1,5 +1,8 @@
 const fs = require('fs')
 const settings = require('./functions/settings.js')
+const probe = require('probe-image-size')
+const imageThumbnail = require('image-thumbnail')
+
 const getProducts = async (key) => {
   const stripe = require('stripe')(key)
 
@@ -8,6 +11,16 @@ const getProducts = async (key) => {
 
   for (const product of products.data) {
     product.prices = prices.data.filter(price => price.product === product.id)
+
+    if (product.images[0]) {
+      product.image = await probe(product.images[0])
+      product.thumb = await imageThumbnail({
+        uri: product.images[0],
+      }, {
+        width: 500,
+        responseType: 'base64'
+      });
+    }
   }
 
   return products.data
