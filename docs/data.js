@@ -2,6 +2,45 @@ export default {
   "prod": {
     "products": [
       {
+        "id": "prod_IPFalY7X5hREV3",
+        "object": "product",
+        "active": true,
+        "attributes": [],
+        "created": 1605607638,
+        "description": null,
+        "images": [
+          "https://files.stripe.com/links/fl_live_sPZ1hoknwtdpYY6VzGYtW0E7"
+        ],
+        "livemode": true,
+        "metadata": {},
+        "name": "Vrede",
+        "statement_descriptor": null,
+        "type": "service",
+        "unit_label": null,
+        "updated": 1605607639,
+        "prices": [
+          {
+            "id": "price_1HoR5nDM7H4MIyD8YkcfwAB9",
+            "object": "price",
+            "active": true,
+            "billing_scheme": "per_unit",
+            "created": 1605607639,
+            "currency": "eur",
+            "livemode": true,
+            "lookup_key": null,
+            "metadata": {},
+            "nickname": null,
+            "product": "prod_IPFalY7X5hREV3",
+            "recurring": null,
+            "tiers_mode": null,
+            "transform_quantity": null,
+            "type": "one_time",
+            "unit_amount": 150,
+            "unit_amount_decimal": "150"
+          }
+        ]
+      },
+      {
         "id": "prod_ILHcDR1qwPnKF3",
         "object": "product",
         "active": true,
