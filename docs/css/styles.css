@@ -73,6 +73,10 @@ html {
     margin: 0 auto 60px;
 }
 
+#app {
+    height: 100%;
+}
+
 .cards {
     text-align: center;
     width: 100%;
@@ -559,3 +563,49 @@ html {
             padding-left: 0;
         }
     }
+
+.thank-you {
+    padding: 40px;
+    text-align: center;
+}
+
+.thank-you .thanks-title {
+        color: #1d5766;
+        color: var(--primary);
+        font-weight: 300;
+    }
+
+@media only screen and (min-width: 721px) {
+
+.thank-you {
+        text-align: left
+}
+    }
+
+.back-button {
+    font-size: 14px;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 30px;
+    background: white;
+    transition: all .3s ease-in-out;
+    transition: all var(--speed) ease-in-out;
+    border: 2px solid #1d5766;
+    border: 2px solid var(--primary);
+    pointer-events: all;
+    position: relative;
+    overflow: hidden;
+    color: #1d5766;
+    color: var(--primary);
+}
+
+.back-button:hover {
+        background: #1d5766;
+        background: var(--primary);
+        color: white;
+    }
+
+.back-button:hover .fa-chevron-right path {
+                fill: white;
+            }
