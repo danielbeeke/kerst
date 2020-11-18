@@ -22,8 +22,8 @@ class App {
     return html`
       <div class="site-header">
         <h1 class="site-title">Kerstkaarten</h1>
-        <p class="site-introduction">Wat is er nu leuker dan een mooie kaart die op de mat valt? Speciaal voor kerst of gewoon zomaar. Juist nu we niet zo veel samen kunnen zijn kan een kaartje extra goed doen. De kaarten zijn prints van geschilderde gouache illustraties.</p>      
-      </div>
+        <p class="site-introduction">Wat is er nu leuker dan een mooie kaart die op de mat valt? Speciaal voor kerst of gewoon zomaar. Juist nu we niet zo veel samen kunnen zijn kan een kaartje extra goed doen! De kaarten zijn prints van geschilderde gouache illustraties en hebben een formaat van 10 x 15 cm.</p>
+        </div>
       <stripe-cards category="postcard" env="${env}" src="./data.js" shop="${shopId}" session-url="${awsApi}" />
     `
   }

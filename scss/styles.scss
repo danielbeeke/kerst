@@ -62,6 +62,8 @@ html {
 .site-introduction {
     padding: 0 20px;
     max-width: 600px;
+    line-height: 26px;
+    font-size: 14px;
     margin: 0 auto 60px;
 }
 
@@ -262,6 +264,7 @@ html {
         }
     }
 
+    &.is-working,
     &:hover {
         background: var(--primary);
         color: white;
@@ -280,14 +283,15 @@ html {
             top: 0; left: 0; bottom: 0; right: 0;
             background-image: linear-gradient(
                             -45deg,
-                            rgba(255, 255, 255, .2) 25%,
+                            var(--blue-light) 25%,
                             transparent 25%,
                             transparent 50%,
-                            rgba(255, 255, 255, .2) 50%,
-                            rgba(255, 255, 255, .2) 75%,
+                            var(--blue-light) 50%,
+                            var(--blue-light) 75%,
                             transparent 75%,
                             transparent
             );
+            opacity: .4;
             z-index: 1;
             background-size: 50px 50px;
             animation: move 2s linear infinite;
@@ -422,9 +426,21 @@ html {
         position: relative;
         align-items: flex-start;
 
+        &:after {
+            content: '';
+            display: block;
+            position: fixed;
+            left: 0;
+            width: 320px;
+            height: 100vh;
+            opacity: .2;
+            background: var(--blue-light);
+            z-index: -2;
+        }
+
         .site-header {
             position: sticky;
-            top: 0;
+            top: 20px;
             text-align: left;
             flex: 0 0 300px;
         }
@@ -432,6 +448,8 @@ html {
         .site-title {
             padding: 20px 40px;
             text-align: left;
+            color: var(--primary);
+            font-weight: 300;
         }
 
         .site-introduction {
@@ -441,12 +459,13 @@ html {
         stripe-cards {
             flex: 1 1 auto;
             margin-right: 40px;
-            padding-top: 9px;
+            padding-top: 29px;
         }
 
         .pay-footer {
             position: fixed;
             left: 40px;
+            margin-bottom: 10px;
             align-items: flex-start;
             flex-direction: column;
 

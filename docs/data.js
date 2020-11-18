@@ -75,14 +75,14 @@ export default {
         "statement_descriptor": null,
         "type": "service",
         "unit_label": null,
-        "updated": 1605698823,
+        "updated": 1605708873,
         "prices": [
           {
-            "id": "price_1HoRkfDM7H4MIyD89Ah0fbZx",
+            "id": "price_1HorQaDM7H4MIyD86tosyXfS",
             "object": "price",
             "active": true,
             "billing_scheme": "per_unit",
-            "created": 1605610173,
+            "created": 1605708872,
             "currency": "eur",
             "livemode": true,
             "lookup_key": null,
@@ -93,8 +93,8 @@ export default {
             "tiers_mode": null,
             "transform_quantity": null,
             "type": "one_time",
-            "unit_amount": 150,
-            "unit_amount_decimal": "150"
+            "unit_amount": 175,
+            "unit_amount_decimal": "175"
           }
         ],
         "image": {
@@ -129,14 +129,14 @@ export default {
         "statement_descriptor": null,
         "type": "service",
         "unit_label": null,
-        "updated": 1605704842,
+        "updated": 1605708852,
         "prices": [
           {
-            "id": "price_1HoR5nDM7H4MIyD8YkcfwAB9",
+            "id": "price_1HorQGDM7H4MIyD8oIAB6abm",
             "object": "price",
             "active": true,
             "billing_scheme": "per_unit",
-            "created": 1605607639,
+            "created": 1605708852,
             "currency": "eur",
             "livemode": true,
             "lookup_key": null,
@@ -147,8 +147,8 @@ export default {
             "tiers_mode": null,
             "transform_quantity": null,
             "type": "one_time",
-            "unit_amount": 150,
-            "unit_amount_decimal": "150"
+            "unit_amount": 175,
+            "unit_amount_decimal": "175"
           }
         ],
         "image": {
@@ -236,14 +236,14 @@ export default {
         "statement_descriptor": null,
         "type": "service",
         "unit_label": null,
-        "updated": 1605706239,
+        "updated": 1605708896,
         "prices": [
           {
-            "id": "price_1Hkb0kDM7H4MIyD8b47xQONL",
+            "id": "price_1HorQxDM7H4MIyD8v2KBLwTr",
             "object": "price",
             "active": true,
             "billing_scheme": "per_unit",
-            "created": 1604692454,
+            "created": 1605708895,
             "currency": "eur",
             "livemode": true,
             "lookup_key": null,
@@ -254,8 +254,8 @@ export default {
             "tiers_mode": null,
             "transform_quantity": null,
             "type": "one_time",
-            "unit_amount": 150,
-            "unit_amount_decimal": "150"
+            "unit_amount": 175,
+            "unit_amount_decimal": "175"
           }
         ],
         "image": {
@@ -292,14 +292,14 @@ export default {
         "statement_descriptor": null,
         "type": "service",
         "unit_label": null,
-        "updated": 1605706226,
+        "updated": 1605708948,
         "prices": [
           {
-            "id": "price_1HkaxhDM7H4MIyD8yE0lFe5s",
+            "id": "price_1HorRnDM7H4MIyD857GUeDDr",
             "object": "price",
             "active": true,
             "billing_scheme": "per_unit",
-            "created": 1604692265,
+            "created": 1605708947,
             "currency": "eur",
             "livemode": true,
             "lookup_key": null,
@@ -310,8 +310,8 @@ export default {
             "tiers_mode": null,
             "transform_quantity": null,
             "type": "one_time",
-            "unit_amount": 150,
-            "unit_amount_decimal": "150"
+            "unit_amount": 175,
+            "unit_amount_decimal": "175"
           }
         ],
         "image": {
@@ -347,14 +347,14 @@ export default {
         "statement_descriptor": null,
         "type": "service",
         "unit_label": null,
-        "updated": 1605705885,
+        "updated": 1605708988,
         "prices": [
           {
-            "id": "price_1HkaRDDM7H4MIyD8LmoI5FKm",
+            "id": "price_1HorSSDM7H4MIyD84ItbqeUF",
             "object": "price",
             "active": true,
             "billing_scheme": "per_unit",
-            "created": 1604690251,
+            "created": 1605708987,
             "currency": "eur",
             "livemode": true,
             "lookup_key": null,
@@ -365,8 +365,8 @@ export default {
             "tiers_mode": null,
             "transform_quantity": null,
             "type": "one_time",
-            "unit_amount": 150,
-            "unit_amount_decimal": "150"
+            "unit_amount": 175,
+            "unit_amount_decimal": "175"
           }
         ],
         "image": {
