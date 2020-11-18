@@ -3,6 +3,10 @@ import { fa } from './Helpers.js'
 import { faChevronRight, faShoppingCart, faTimes } from './web_modules/@fortawesome/free-solid-svg-icons.js'
 import { loadStripe } from './web_modules/@stripe/stripe-js.js';
 
+function fixOrder (number) {
+  return number
+}
+
 class StripeCards extends HTMLElement {
   constructor() {
     super()
@@ -19,7 +23,7 @@ class StripeCards extends HTMLElement {
     Object.assign(this, dataModule.default[this.env])
     this.products = this.products
     .filter(product => product.active && product.metadata?.category === this.category)
-    .sort((a, b) => a.metadata?.order > b.metadata?.order)
+    .sort((a, b) => fixOrder(a.metadata?.order) > fixOrder(b.metadata?.order))
 
     for (const product of this.products) product.zoom = false
     this.basket = new Map()

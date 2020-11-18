@@ -505,8 +505,7 @@ html {
             width: 320px;
             height: 100vh;
             opacity: .2;
-            background: #a0d1de;
-            background: var(--blue-light);
+            background: #ddd;
             z-index: -2;
         }
 
