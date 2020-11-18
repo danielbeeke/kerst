@@ -2,8 +2,6 @@
   "scripts": {
     "run:css": "postcss scss/*.scss --dir docs/css --ext css",
     "run:css::watch": "$1 --watch",
-    "mount:public": "mount docs --to /",
-    "mount:backend": "mount backend --to /backend",
-    "run:backend": "nodemon backend/index.js"
+    "mount:public": "mount docs --to /"
   }
 }

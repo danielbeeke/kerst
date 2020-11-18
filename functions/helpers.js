@@ -46,18 +46,22 @@ function buildParams(prefix, obj, add) {
 
 const request = async (url, method = 'GET', formData, stripeApiKey) => {
   const [host, ...path] = url.split('://')[1].split('/')
-  const postData = objectToQueryString(formData)
+  const postData = formData ? objectToQueryString(formData) : false
+
+  const headers = method === 'POST' ? {
+    'Authorization': 'Bearer ' + stripeApiKey,
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Content-Length': postData.length
+  } : {
+    'Authorization': 'Bearer ' + stripeApiKey,
+  }
 
   const params = {
     method,
     host,
     port: 443,
     path: '/' + path.join('/'),
-    headers: {
-      'Authorization': 'Bearer ' + stripeApiKey,
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Content-Length': postData.length
-    }
+    headers: headers
   }
 
   return new Promise((resolve, reject) => {
@@ -71,7 +75,7 @@ const request = async (url, method = 'GET', formData, stripeApiKey) => {
       res.on('end', () => resolve(JSON.parse(Buffer.concat(data).toString())))
     });
 
-    req.write(postData)
+    if (formData) req.write(postData)
     req.on('error', reject)
     req.end()
   });

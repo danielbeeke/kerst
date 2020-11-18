@@ -357,7 +357,7 @@ html {
     background: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, .4);
     padding: 10px 20px;
-    border-radius: 20px;
+    border-radius: 120px;
     font-size: 14px;
 }
 
@@ -459,12 +459,15 @@ html {
     float: right;
     letter-spacing: 2px;
     color: white;
-    background: #1d5766;
-    background: var(--blue);
+    background: #a0d1de;
+    background: var(--blue-light);
     padding: 3px 7px 4px 10px;
     display: inline-block;
-    opacity: .7;
     margin-top: -3px;
+}
+
+.shipping-costs {
+    font-size: 10px;
 }
 
 .no-stock,
@@ -546,6 +549,7 @@ html {
 
             #app .pay-footer .buy-information {
                 margin-left: 0;
+                text-align: left;
                 box-shadow: none;
             }
 

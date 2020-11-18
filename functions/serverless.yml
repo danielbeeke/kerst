@@ -18,3 +18,10 @@ functions:
           path: create-session
           method: any
           cors: true
+  stock:
+    handler: stock.getStock
+    events:
+      - http:
+          path: get-stock
+          method: any
+          cors: true

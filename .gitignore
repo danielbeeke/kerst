@@ -3,3 +3,4 @@ node_modules
 functions/settings.js
 functions/node_modules
 functions/.serverless
+tmp
