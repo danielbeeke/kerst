@@ -36,6 +36,8 @@ class StripeCards extends HTMLElement {
     }
     this.basket = new Map()
 
+    if (location.hash === '#success') localStorage.setItem('state', '{}')
+
     if (localStorage.getItem('state') && localStorage.getItem('state') !== 'undefined') {
       const state = JSON.parse(localStorage.getItem('state'));
       for (const [basketProductId, quantity] of Object.entries(state)) {
@@ -243,7 +245,10 @@ class StripeCards extends HTMLElement {
     localStorage.setItem('state', this.serialize())
 
     const lineItems = this.createLineItems()
-    lineItems.push({ price: this.shippingCostsProduct.prices[0].id, quantity: 1 })
+
+    if (this.shippingCostsProduct) {
+      lineItems.push({ price: this.shippingCostsProduct.prices[0].id, quantity: 1 })
+    }
 
     const response = await fetch(this.awsUrl + '/' + this.env + '/create-session', {
       method: 'POST',

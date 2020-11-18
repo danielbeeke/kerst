@@ -25,3 +25,10 @@ functions:
           path: get-stock
           method: any
           cors: true
+  order:
+    handler: order.orderHook
+    events:
+      - http:
+          path: order-hook
+          method: any
+          cors: true
