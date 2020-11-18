@@ -3,13 +3,21 @@
 :root {
     --gray: #818080;
     --gray-light: #d9d6d6;
+    --gray-lightest: #fafafa;
+    --gray-dark: #262626;
     --green: green;
     --green-light: #a8d4a8;
     --speed: .3s;
+    --blue: #1d5766;
+    --blue-light: #a0d1de;
+
+    --primary: var(--blue);
+    --primary-light: var(--blue-light);
 }
 
 body {
     height: 100%;
+    margin: 0;
     text-align: center;
 }
 
@@ -32,6 +40,7 @@ body[data-zoom="true"]:after {
 
 html {
     height: 100%;
+    margin: 0;
 }
 
 .no-button {
@@ -44,35 +53,25 @@ html {
 .site-title {
     width: 100%;
     text-align: center;
-    position: -webkit-sticky;
-    position: sticky;
-    top: -20px;
-    background: linear-gradient(white 0%, rgba(255, 255, 255, .7) 50%, rgba(255, 255, 255, 0));
     margin: 0;
     padding: 50px;
 }
 
-.introduction {
-    max-width: 1220px;
+.site-introduction {
     padding: 0 20px;
-    margin: 30px auto;
-    text-align: left;
-    color: #818080;
-    color: var(--gray);
-    line-height: 24px;
-    font-size: 16px;
+    max-width: 600px;
+    margin: 0 auto 60px;
 }
 
 .cards {
     text-align: center;
     width: 100%;
     max-width: 980px;
-    margin: 0 auto 10px;
-    padding: 10px;
+    margin: 0 auto 70px;
+    padding: 20px;
     grid-column-gap: 50px;
     -moz-column-gap: 50px;
          column-gap: 50px;
-
 }
 
 @media only screen and (min-width: 721px) {
@@ -80,7 +79,6 @@ html {
 .cards {
         -moz-columns: 2;
              columns: 2
-
 }
     }
 
@@ -89,7 +87,6 @@ html {
 .cards {
         -moz-columns: 2;
              columns: 2
-
 }
     }
 
@@ -99,12 +96,12 @@ html {
     text-align: left;
     flex-direction: column;
     flex: 1 1 200px;
-    margin-bottom: 30px;
+    margin-bottom: 60px;
 }
 
 .card .title {
-        color: #818080;
-        color: var(--gray);
+        color: #262626;
+        color: var(--gray-dark);
         font-weight: normal;
         font-size: 12px;
         font-style: italic;
@@ -133,8 +130,8 @@ html {
         justify-content: flex-end;
         grid-gap: 10px;
         gap: 10px;
-        padding-top: 20px;
-        align-items: center;
+        padding-top: 10px;
+        align-items: flex-start;
     }
 
 .card .add-to-basket .fa-shopping-cart {
@@ -143,6 +140,13 @@ html {
             display: block;
             padding: 10px;
         }
+
+.card .add-to-basket .fa-shopping-cart path {
+                transition: fill .3s ease-in-out;
+                transition: fill var(--speed) ease-in-out;
+                fill: #262626;
+                fill: var(--gray-dark);
+            }
 
 .card .add-to-basket .quantity {
             margin-left: 12px;
@@ -159,7 +163,17 @@ html {
             border-radius: 50%;
             width: 30px;
             height: 30px;
+            margin-top: 6px;
+            transition: all .3s ease-in-out;
+            transition: all var(--speed) ease-in-out;
         }
+
+.card .add-to-basket .remove-product-button:hover {
+                color: #d9d6d6;
+                color: var(--gray-light);
+                background: #818080;
+                background: var(--gray);
+            }
 
 .card .add-to-basket .add-product-button {
             display: flex;
@@ -170,11 +184,13 @@ html {
             background: #d9d6d6;
             background: var(--gray-light);
             border-radius: 20px;
+            transition: all .3s ease-in-out;
+            transition: all var(--speed) ease-in-out;
         }
 
 .card .add-to-basket .add-product-button:hover {
-                background: green;
-                background: var(--green);
+                background: #1d5766;
+                background: var(--primary);
             }
 
 .card .add-to-basket .add-product-button:hover path {
@@ -185,11 +201,12 @@ html {
             margin-right: auto;
             color: #818080;
             color: var(--gray);
+            margin-top: 4px;
         }
 
 .card.has-line-item .add-to-basket .add-product-button {
-            background: green;
-            background: var(--green);
+            background: #1d5766;
+            background: var(--primary);
         }
 
 .card.has-line-item .add-to-basket .add-product-button path {
@@ -197,8 +214,8 @@ html {
             }
 
 .card.has-line-item .add-to-basket .price {
-            color: green;
-            color: var(--green);
+            color: #1d5766;
+            color: var(--primary);
         }
 
 .card.portrait .image {
@@ -217,25 +234,33 @@ html {
         box-shadow: 0 0 15px rgba(0, 0, 0, .3);
     }
 
+.card .add-to-basket.disabled .add-product-button {
+        pointer-events: none;
+        background: #818080;
+        background: var(--gray);
+    }
+
 .go-to-stripe-button {
     font-size: 14px;
-    padding: 20px;
+    padding: 10px 16px;
     cursor: pointer;
+    font-weight: bold;
     border-radius: 30px;
-    background: #a8d4a8;
-    background: var(--green-light);
+    background: white;
     transition: all .3s ease-in-out;
     transition: all var(--speed) ease-in-out;
-    border: 2px solid green;
-    border: 2px solid var(--green);
+    border: 2px solid #1d5766;
+    border: 2px solid var(--primary);
     pointer-events: all;
     position: relative;
     overflow: hidden;
+    color: #1d5766;
+    color: var(--primary);
 }
 
 .go-to-stripe-button .total-price {
-        background: green;
-        background: var(--green);
+        background: #1d5766;
+        background: var(--primary);
         color: white;
         font-size: 13px;
         padding: 10px;
@@ -250,8 +275,8 @@ html {
     }
 
 .go-to-stripe-button .fa-chevron-right path {
-            fill: green;
-            fill: var(--green);
+            fill: #1d5766;
+            fill: var(--primary);
             transition: all .3s ease-in-out;
             transition: all var(--speed) ease-in-out;
         }
@@ -264,6 +289,7 @@ html {
         background: var(--gray-light);
         color: #818080;
         color: var(--gray);
+        font-weight: normal;
     }
 
 .go-to-stripe-button.disabled .fa-chevron-right path {
@@ -272,8 +298,8 @@ html {
             }
 
 .go-to-stripe-button:hover {
-        background: green;
-        background: var(--green);
+        background: #1d5766;
+        background: var(--primary);
         color: white;
     }
 
@@ -306,13 +332,17 @@ html {
     margin: 10px;
     display: inline-block;
     pointer-events: none;
-    background: #d9d6d6;
-    background: var(--gray-light);
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .4);
     padding: 10px 20px;
     border-radius: 20px;
-    border: 1px solid green;
-    border: 1px solid var(--green);
+    font-size: 14px;
 }
+
+.buy-information .price {
+        color: #1d5766;
+        color: var(--primary);
+    }
 
 .pay-footer {
     padding-top: 30px;
@@ -388,3 +418,101 @@ html {
         pointer-events: none;
     }
 }
+
+.product {
+    display: flex;
+}
+
+.product .thumbnail {
+        -o-object-fit: cover;
+           object-fit: cover;
+        width: 100px;
+        height: 100px;
+    }
+
+.new-product {
+    text-transform: lowercase;
+    font-style: normal;
+    border-radius: 20px;
+    float: right;
+    letter-spacing: 2px;
+    color: white;
+    background: #1d5766;
+    background: var(--blue);
+    padding: 3px 7px 4px 10px;
+    display: inline-block;
+    opacity: .7;
+    margin-top: -3px;
+}
+
+.no-stock,
+.in-stock {
+    text-align: right;
+    height: 40px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    position: relative;
+    grid-gap: 6px;
+    gap: 6px;
+    font-size: 11px;
+    color: #818080;
+    color: var(--gray);
+}
+
+.no-stock path, .in-stock path {
+        fill: #262626;
+        fill: var(--gray-dark);
+    }
+
+@media only screen and (min-width: 1340px) {
+
+#app {
+        display: flex;
+        position: relative;
+        align-items: flex-start
+}
+
+        #app .site-header {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            text-align: left;
+            flex: 0 0 300px;
+        }
+
+        #app .site-title {
+            padding: 20px 40px;
+            text-align: left;
+        }
+
+        #app .site-introduction {
+            padding-left: 40px;
+        }
+
+        #app stripe-cards {
+            flex: 1 1 auto;
+            margin-right: 40px;
+            padding-top: 9px;
+        }
+
+        #app .pay-footer {
+            position: fixed;
+            left: 40px;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+            #app .pay-footer .buy-information {
+                margin-left: 0;
+                box-shadow: none;
+            }
+
+        #app .buy-information {
+            background: none;
+            border: none;
+            padding-left: 0;
+        }
+    }

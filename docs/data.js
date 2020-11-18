@@ -13,20 +13,22 @@ export default {
         ],
         "livemode": true,
         "metadata": {
-          "category": "postcard"
+          "category": "postcard",
+          "order": "1",
+          "status": "new"
         },
-        "name": "Winterbloemen",
+        "name": "Winterbloemen (2)",
         "statement_descriptor": null,
         "type": "service",
         "unit_label": null,
-        "updated": 1605619770,
+        "updated": 1605704906,
         "prices": [
           {
-            "id": "price_1HoTlfDM7H4MIyD8JBnQ7aIv",
+            "id": "price_1HoozzDM7H4MIyD8plspimMU",
             "object": "price",
             "active": true,
             "billing_scheme": "per_unit",
-            "created": 1605617923,
+            "created": 1605699535,
             "currency": "eur",
             "livemode": true,
             "lookup_key": null,
@@ -37,8 +39,8 @@ export default {
             "tiers_mode": null,
             "transform_quantity": null,
             "type": "one_time",
-            "unit_amount": 150,
-            "unit_amount_decimal": "150"
+            "unit_amount": 175,
+            "unit_amount_decimal": "175"
           }
         ],
         "image": {
@@ -65,13 +67,15 @@ export default {
         ],
         "livemode": true,
         "metadata": {
-          "category": "postcard"
+          "category": "postcard",
+          "order": "2",
+          "status": "new"
         },
         "name": "Nachtlandschap",
         "statement_descriptor": null,
         "type": "service",
         "unit_label": null,
-        "updated": 1605617864,
+        "updated": 1605698823,
         "prices": [
           {
             "id": "price_1HoRkfDM7H4MIyD89Ah0fbZx",
@@ -117,13 +121,15 @@ export default {
         ],
         "livemode": true,
         "metadata": {
-          "category": "postcard"
+          "category": "postcard",
+          "status": "new",
+          "order": "4"
         },
         "name": "Vrede",
         "statement_descriptor": null,
         "type": "service",
         "unit_label": null,
-        "updated": 1605617840,
+        "updated": 1605704842,
         "prices": [
           {
             "id": "price_1HoR5nDM7H4MIyD8YkcfwAB9",
@@ -221,13 +227,16 @@ export default {
         ],
         "livemode": true,
         "metadata": {
-          "category": "postcard"
+          "category": "postcard",
+          "order": "3",
+          "status": "old",
+          "stock": "12"
         },
-        "name": "Winter flowers",
+        "name": "Winterbloemen (1)",
         "statement_descriptor": null,
         "type": "service",
         "unit_label": null,
-        "updated": 1605620835,
+        "updated": 1605706239,
         "prices": [
           {
             "id": "price_1Hkb0kDM7H4MIyD8b47xQONL",
@@ -273,13 +282,17 @@ export default {
         ],
         "livemode": true,
         "metadata": {
-          "category": "postcard"
+          "category": "postcard",
+          "order": "6",
+          "status": "old",
+          "number": "1",
+          "stock": "20"
         },
         "name": "Blaadjes op zwart",
         "statement_descriptor": null,
         "type": "service",
         "unit_label": null,
-        "updated": 1605620840,
+        "updated": 1605706226,
         "prices": [
           {
             "id": "price_1HkaxhDM7H4MIyD8yE0lFe5s",
@@ -325,13 +338,16 @@ export default {
         ],
         "livemode": true,
         "metadata": {
-          "category": "postcard"
+          "category": "postcard",
+          "order": "5",
+          "status": "new",
+          "number": "7"
         },
         "name": "Wolkenfabriek",
         "statement_descriptor": null,
         "type": "service",
         "unit_label": null,
-        "updated": 1605618039,
+        "updated": 1605705885,
         "prices": [
           {
             "id": "price_1HkaRDDM7H4MIyD8LmoI5FKm",
@@ -382,7 +398,9 @@ export default {
           "duration_in_months": null,
           "livemode": true,
           "max_redemptions": null,
-          "metadata": {},
+          "metadata": {
+            "category": "postcard"
+          },
           "name": "30 euro or more",
           "percent_off": null,
           "redeem_by": null,
@@ -417,7 +435,9 @@ export default {
           "duration_in_months": null,
           "livemode": true,
           "max_redemptions": null,
-          "metadata": {},
+          "metadata": {
+            "category": "postcard"
+          },
           "name": "20 euro or more",
           "percent_off": null,
           "redeem_by": null,

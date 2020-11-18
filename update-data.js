@@ -10,7 +10,7 @@ const getProducts = async (key) => {
   const prices = await stripe.prices.list()
 
   for (const product of products.data) {
-    product.prices = prices.data.filter(price => price.product === product.id)
+    product.prices = prices.data.filter(price => price.product === product.id && price.active)
 
     if (product.images[0]) {
       product.image = await probe(product.images[0])

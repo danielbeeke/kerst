@@ -13,7 +13,7 @@ async function _createSession (body, stripeApiKey) {
       allowed_countries: ['NL']
     },
     success_url: body.origin.origin + '#success',
-    cancel_url: body.origin.origin + '#cancel',
+    cancel_url: body.origin.origin,
   }
 
   if (body.coupon) {

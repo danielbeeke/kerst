@@ -1,7 +1,7 @@
 import { render, html } from './web_modules/uhtml.js'
 import { fa } from './Helpers.js'
 import { faChevronRight, faShoppingCart, faTimes } from './web_modules/@fortawesome/free-solid-svg-icons.js'
-import {loadStripe} from './web_modules/@stripe/stripe-js.js';
+import { loadStripe } from './web_modules/@stripe/stripe-js.js';
 
 class StripeCards extends HTMLElement {
   constructor() {
@@ -17,9 +17,24 @@ class StripeCards extends HTMLElement {
     this.sessionUrl = this.getAttribute('session-url')
     const dataModule = await import(this.dateFilePath)
     Object.assign(this, dataModule.default[this.env])
-    this.products = this.products.filter(product => product.active && product.metadata?.category === this.category)
+    this.products = this.products
+    .filter(product => product.active && product.metadata?.category === this.category)
+    .sort((a, b) => a.metadata?.order > b.metadata?.order)
+
     for (const product of this.products) product.zoom = false
     this.basket = new Map()
+
+    if (localStorage.getItem('state') && localStorage.getItem('state') !== 'undefined') {
+      const state = JSON.parse(localStorage.getItem('state'));
+      for (const [basketProductId, quantity] of Object.entries(state)) {
+        const basketProduct = this.products.find(product => product.id === basketProductId)
+
+        if (basketProduct) {
+          this.basket.set(basketProduct, { quantity })
+        }
+      }
+    }
+
     this.currencyFormat = new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR' })
     this.draw()
   }
@@ -67,13 +82,13 @@ class StripeCards extends HTMLElement {
 
     return html`
     <div class="pay-footer">
-      ${totalQuantity ? html`<div class="buy-information">${totalQuantity} items, totaal: ${price}</div>` : ''}
+      ${totalQuantity ? html`<div class="buy-information">${totalQuantity} items, totaal: <strong class="price">${price}</strong></div>` : ''}
   
       <button class="${'go-to-stripe-button' + (!totalPrice ? ' disabled' : '') + (this.isCreatingSession ? ' is-working' : '')}" onclick="${() => this.checkout()}">
         ${this.isCreatingSession ? html`
         <span class="text">Bezig met doorsturen...</span>
         ` : html`
-        <span class="text">Door naar bevestigen</span> ${fa(faChevronRight)}
+        <span class="text">Naar winkelmand</span> ${fa(faChevronRight)}
         `}
       </button>
     </div>`
@@ -85,29 +100,44 @@ class StripeCards extends HTMLElement {
         ${this.products.map(product => {
           const lineItem = this.basket.get(product)
           const price = product.prices[0].unit_amount / 100
-    
           const orientation = product.image.height > product.image.width ? 'portrait' : 'landscape'
       
+          const buyable = !('stock' in product.metadata && !product.metadata.stock)
+      
+          const limitReached = lineItem && product.metadata.stock && lineItem.quantity === parseInt(product.metadata.stock)
+      
           return html`
-            <div class="${'card' + (lineItem ? ' has-line-item' : '') + ' ' + orientation}">
-              <h3 class="title">${product.name}</h3>
+            <div order="${product.metadata?.order}" class="${'card' + (lineItem ? ' has-line-item' : '') + ' ' + orientation}">
+              <h3 class="title">${product.name} ${product.metadata.status === 'new' ? html`<span class="new-product">Nieuw</span>` : ''}</h3>
     
               <div 
               style="${'padding-bottom: ' + (product.image.height / product.image.width * 100 * (orientation === 'portrait' ? .8 : 1)) + '%; background-image: url("data:image/png;base64,' + product.thumb + '")'}" 
               onclick="${() => { product.zoom = !product.zoom; this.draw() }}" 
               class="image"></div>
-             
-              <div class="add-to-basket">
+                          
+              <div class="${'add-to-basket' + (limitReached ? ' disabled' : '')}">
                 <span class="price">${this.currencyFormat.format(lineItem ? price * lineItem.quantity : price)}</span>
     
-                ${lineItem ? html`<button class="remove-product-button no-button" onclick="${() => { this.basket.delete(product); this.draw() }}">${fa(faTimes)}</button>` : ''}
+                ${lineItem ? html`<button class="remove-product-button no-button" onclick="${() => { 
+                  this.basket.delete(product);
+                  localStorage.setItem('state', this.serialize())
+                  this.draw() 
+                }}">${fa(faTimes)}</button>` : ''}
     
-                <button class="add-product-button no-button" onclick="${() => { this.increaseQuantityForProduct(product); this.draw() }}">
-                  ${lineItem?.quantity ? html`<span class="quantity">${lineItem.quantity}</span>` : ''}
-                  ${fa(faShoppingCart)}
-                </button>
+                ${buyable ? html`
+                  <button class="add-product-button no-button" onclick="${() => { this.increaseQuantityForProduct(product); this.draw() }}">
+                    ${lineItem?.quantity ? html`<span class="quantity">${lineItem.quantity}</span>` : ''}
+                    ${fa(faShoppingCart)}
+                  </button>
+                ` : html`<span class="no-stock">Niet meer<br>beschikbaar</span>`}
     
+                ${product.metadata.stock ? html`
+                  <span class="in-stock">
+                    <span class="stock-number">Nog <strong>${product.metadata.stock}</strong> op<br>voorraad</span>
+                  </span>
+                ` : ''}
               </div>
+              
             </div>
             `}
         )}       
@@ -120,6 +150,7 @@ class StripeCards extends HTMLElement {
     if (!lineItem) lineItem = { quantity: 0 }
     lineItem.quantity++
     this.basket.set(product, lineItem)
+    localStorage.setItem('state', this.serialize())
   }
 
   totalPrice () {
@@ -163,6 +194,15 @@ class StripeCards extends HTMLElement {
     })
   }
 
+  serialize () {
+    const state = {}
+    for (const [product, lineItem] of this.basket.entries()) {
+      state[product.id] = lineItem.quantity
+    }
+
+    return JSON.stringify(state)
+  }
+
   async checkout () {
     this.isCreatingSession = true
     this.draw()
@@ -173,6 +213,8 @@ class StripeCards extends HTMLElement {
 
     const totalPrice = this.totalPrice()
     const promotionCode = this.getActivePromotionCode(totalPrice)
+
+    localStorage.setItem('state', this.serialize())
 
     const response = await fetch(this.sessionUrl + '/' + this.env + '/create-session', {
       method: 'POST',
