@@ -57,6 +57,13 @@ html {
     text-align: center;
     margin: 0;
     padding: 50px;
+    font-weight: 300;
+    color: var(--primary);
+}
+
+.site-logo {
+    margin-top: 20px;
+    max-width: 100px;
 }
 
 .site-introduction {
@@ -448,8 +455,6 @@ html {
         .site-title {
             padding: 20px 40px;
             text-align: left;
-            color: var(--primary);
-            font-weight: 300;
         }
 
         .site-introduction {
@@ -460,6 +465,10 @@ html {
             flex: 1 1 auto;
             margin-right: 40px;
             padding-top: 29px;
+        }
+
+        .site-logo {
+            margin-left: 40px;
         }
 
         .pay-footer {
