@@ -69,7 +69,7 @@ export default {
         "livemode": true,
         "metadata": {
           "category": "postcard",
-          "status": "new",
+          "status": "old",
           "order": "7",
           "stock": "1"
         },
@@ -77,7 +77,7 @@ export default {
         "statement_descriptor": null,
         "type": "service",
         "unit_label": null,
-        "updated": 1605713136,
+        "updated": 1605716485,
         "prices": [
           {
             "id": "price_1HosUKDM7H4MIyD8Wnt39SuO",
@@ -318,7 +318,7 @@ export default {
         "livemode": true,
         "metadata": {
           "category": "postcard",
-          "order": "3",
+          "order": "5",
           "status": "old",
           "stock": "12"
         },
@@ -326,7 +326,7 @@ export default {
         "statement_descriptor": null,
         "type": "service",
         "unit_label": null,
-        "updated": 1605712869,
+        "updated": 1605716592,
         "prices": [
           {
             "id": "price_1HorQxDM7H4MIyD8v2KBLwTr",
@@ -429,7 +429,7 @@ export default {
         "livemode": true,
         "metadata": {
           "category": "postcard",
-          "order": "5",
+          "order": "3",
           "status": "new",
           "number": "7"
         },
@@ -437,7 +437,7 @@ export default {
         "statement_descriptor": null,
         "type": "service",
         "unit_label": null,
-        "updated": 1605714097,
+        "updated": 1605716584,
         "prices": [
           {
             "id": "price_1HorSSDM7H4MIyD84ItbqeUF",

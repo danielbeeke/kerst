@@ -3,7 +3,10 @@ import { fa } from './Helpers.js'
 import { faChevronRight, faShoppingCart, faTimes } from './web_modules/@fortawesome/free-solid-svg-icons.js'
 import { loadStripe } from './web_modules/@stripe/stripe-js.js';
 
-function fixOrder (number) {
+function fixOrder (number, total) {
+  number = parseInt(number)
+  const isEven = number % 2 === 0
+  if (isEven) number += Math.ceil(total)
   return number
 }
 
@@ -23,7 +26,8 @@ class StripeCards extends HTMLElement {
     Object.assign(this, dataModule.default[this.env])
     this.products = this.products
     .filter(product => product.active && product.metadata?.category === this.category)
-    .sort((a, b) => fixOrder(a.metadata?.order) > fixOrder(b.metadata?.order))
+
+    this.products.sort((a, b) => fixOrder(a.metadata?.order, this.products.length) > fixOrder(b.metadata?.order, this.products.length))
 
     for (const product of this.products) product.zoom = false
     this.basket = new Map()
