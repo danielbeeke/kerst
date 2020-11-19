@@ -18,6 +18,7 @@ class App {
 
   draw () {
     const path = location.hash ? location.hash.substr(1, 1).toUpperCase() + location.hash.substr(2) : 'Default'
+    if (path === 'Success') localStorage.setItem('state', '{}')
     render(this.appElement, this['template' + path]())
   }
 

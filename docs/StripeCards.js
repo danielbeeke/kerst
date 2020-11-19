@@ -36,8 +36,6 @@ class StripeCards extends HTMLElement {
     }
     this.basket = new Map()
 
-    if (location.hash === '#success') localStorage.setItem('state', '{}')
-
     if (localStorage.getItem('state') && localStorage.getItem('state') !== 'undefined') {
       const state = JSON.parse(localStorage.getItem('state'));
       for (const [basketProductId, quantity] of Object.entries(state)) {

@@ -579,7 +579,8 @@ html {
 @media only screen and (min-width: 721px) {
 
 .thank-you {
-        text-align: left
+        text-align: left;
+        margin-left: 320px
 }
     }
 
