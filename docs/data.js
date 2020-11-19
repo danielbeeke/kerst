@@ -56,13 +56,13 @@ export default {
           "category": "postcard",
           "status": "old",
           "order": "9",
-          "stock": "1"
+          "stock": "50"
         },
         "name": "Sneeuw",
         "statement_descriptor": null,
         "type": "service",
         "unit_label": null,
-        "updated": 1605716972,
+        "updated": 1605803504,
         "prices": [
           {
             "id": "price_1HotWNDM7H4MIyD8bVyy6KQ8",
@@ -111,13 +111,13 @@ export default {
           "category": "postcard",
           "status": "old",
           "order": "8",
-          "stock": "1"
+          "stock": "50"
         },
         "name": "Let it snow",
         "statement_descriptor": null,
         "type": "service",
         "unit_label": null,
-        "updated": 1605713226,
+        "updated": 1605803517,
         "prices": [
           {
             "id": "price_1HosYBDM7H4MIyD8hXCKaIaD",
@@ -166,13 +166,13 @@ export default {
           "category": "postcard",
           "status": "old",
           "order": "4",
-          "stock": "1"
+          "stock": "50"
         },
         "name": "Liefde, licht en leven",
         "statement_descriptor": null,
         "type": "service",
         "unit_label": null,
-        "updated": 1605721154,
+        "updated": 1605803527,
         "prices": [
           {
             "id": "price_1HosUKDM7H4MIyD8Wnt39SuO",
@@ -435,13 +435,13 @@ export default {
           "category": "postcard",
           "order": "5",
           "status": "old",
-          "stock": "12"
+          "stock": "20"
         },
         "name": "Winterbloemen (1)",
         "statement_descriptor": null,
         "type": "service",
         "unit_label": null,
-        "updated": 1605716592,
+        "updated": 1605803547,
         "prices": [
           {
             "id": "price_1HorQxDM7H4MIyD8v2KBLwTr",
@@ -491,13 +491,13 @@ export default {
           "order": "3",
           "status": "old",
           "number": "1",
-          "stock": "20"
+          "stock": "50"
         },
         "name": "Blaadjes op zwart",
         "statement_descriptor": null,
         "type": "service",
         "unit_label": null,
-        "updated": 1605720745,
+        "updated": 1605803557,
         "prices": [
           {
             "id": "price_1HorRnDM7H4MIyD857GUeDDr",
@@ -546,13 +546,13 @@ export default {
           "category": "postcard",
           "order": "7",
           "status": "new",
-          "number": "7"
+          "number": "20"
         },
         "name": "Wolkenfabriek",
         "statement_descriptor": null,
         "type": "service",
         "unit_label": null,
-        "updated": 1605721080,
+        "updated": 1605803575,
         "prices": [
           {
             "id": "price_1HorSSDM7H4MIyD84ItbqeUF",
@@ -589,9 +589,149 @@ export default {
     ],
     "promotionCodes": [
       {
-        "id": "promo_1HnpAFDM7H4MIyD8pMr9VjIE",
+        "id": "promo_1HpGrcDM7H4MIyD8cpwOSRqq",
         "object": "promotion_code",
         "active": true,
+        "code": "1J9KRYHY",
+        "coupon": {
+          "id": "maHgrW1l",
+          "object": "coupon",
+          "amount_off": 700,
+          "created": 1605806647,
+          "currency": "eur",
+          "duration": "forever",
+          "duration_in_months": null,
+          "livemode": true,
+          "max_redemptions": null,
+          "metadata": {},
+          "name": "7 korting bij 35 euro",
+          "percent_off": null,
+          "redeem_by": null,
+          "times_redeemed": 0,
+          "valid": true
+        },
+        "created": 1605806648,
+        "customer": null,
+        "expires_at": null,
+        "livemode": true,
+        "max_redemptions": null,
+        "metadata": {},
+        "restrictions": {
+          "first_time_transaction": false,
+          "minimum_amount": 3500,
+          "minimum_amount_currency": "eur"
+        },
+        "times_redeemed": 0
+      },
+      {
+        "id": "promo_1HpGpmDM7H4MIyD8Kmb3A56u",
+        "object": "promotion_code",
+        "active": true,
+        "code": "6N3S2OS2",
+        "coupon": {
+          "id": "kXiaSbdL",
+          "object": "coupon",
+          "amount_off": 525,
+          "created": 1605806534,
+          "currency": "eur",
+          "duration": "forever",
+          "duration_in_months": null,
+          "livemode": true,
+          "max_redemptions": null,
+          "metadata": {},
+          "name": "5,25 vanaf 26,25",
+          "percent_off": null,
+          "redeem_by": null,
+          "times_redeemed": 0,
+          "valid": true
+        },
+        "created": 1605806534,
+        "customer": null,
+        "expires_at": null,
+        "livemode": true,
+        "max_redemptions": null,
+        "metadata": {},
+        "restrictions": {
+          "first_time_transaction": false,
+          "minimum_amount": 2625,
+          "minimum_amount_currency": "eur"
+        },
+        "times_redeemed": 0
+      },
+      {
+        "id": "promo_1HpGoMDM7H4MIyD8lzlH2bQl",
+        "object": "promotion_code",
+        "active": true,
+        "code": "DALAKU5Y",
+        "coupon": {
+          "id": "91jCmP19",
+          "object": "coupon",
+          "amount_off": 250,
+          "created": 1605806446,
+          "currency": "eur",
+          "duration": "forever",
+          "duration_in_months": null,
+          "livemode": true,
+          "max_redemptions": null,
+          "metadata": {},
+          "name": "2,50 korting vanaf 17,50",
+          "percent_off": null,
+          "redeem_by": null,
+          "times_redeemed": 0,
+          "valid": true
+        },
+        "created": 1605806446,
+        "customer": null,
+        "expires_at": null,
+        "livemode": true,
+        "max_redemptions": null,
+        "metadata": {},
+        "restrictions": {
+          "first_time_transaction": false,
+          "minimum_amount": 1750,
+          "minimum_amount_currency": "eur"
+        },
+        "times_redeemed": 0
+      },
+      {
+        "id": "promo_1HpGnODM7H4MIyD8Br6Cz9ra",
+        "object": "promotion_code",
+        "active": true,
+        "code": "U0YLM5OE",
+        "coupon": {
+          "id": "CLFLeL6W",
+          "object": "coupon",
+          "amount_off": 175,
+          "created": 1605806385,
+          "currency": "eur",
+          "duration": "forever",
+          "duration_in_months": null,
+          "livemode": true,
+          "max_redemptions": null,
+          "metadata": {},
+          "name": "1,75 korting vanaf 8,75",
+          "percent_off": null,
+          "redeem_by": null,
+          "times_redeemed": 0,
+          "valid": true
+        },
+        "created": 1605806386,
+        "customer": null,
+        "expires_at": null,
+        "livemode": true,
+        "max_redemptions": null,
+        "metadata": {},
+        "restrictions": {
+          "first_time_transaction": false,
+          "minimum_amount": 875,
+          "minimum_amount_currency": "eur"
+        },
+        "times_redeemed": 0
+      },
+      {
+        "id": "promo_1HnpAFDM7H4MIyD8pMr9VjIE",
+        "object": "promotion_code",
+        "active": false,
         "code": "IQZFV0S9",
         "coupon": {
           "id": "cho95hVS",
@@ -610,7 +750,7 @@ export default {
           "percent_off": null,
           "redeem_by": null,
           "times_redeemed": 0,
-          "valid": true
+          "valid": false
         },
         "created": 1605461843,
         "customer": null,
@@ -628,7 +768,7 @@ export default {
       {
         "id": "promo_1HnohCDM7H4MIyD8Zs9YrO0a",
         "object": "promotion_code",
-        "active": true,
+        "active": false,
         "code": "M2WMHC3Q",
         "coupon": {
           "id": "Ecyp2JE1",
@@ -643,11 +783,11 @@ export default {
           "metadata": {
             "category": "postcard"
           },
-          "name": "20 euro or more",
+          "name": "8,75 euro or more",
           "percent_off": null,
           "redeem_by": null,
           "times_redeemed": 0,
-          "valid": true
+          "valid": false
         },
         "created": 1605460042,
         "customer": null,
@@ -730,13 +870,14 @@ export default {
         ],
         "livemode": false,
         "metadata": {
-          "category": "postcard"
+          "category": "postcard",
+          "stock": "2"
         },
         "name": "Kerstkaart 1",
         "statement_descriptor": null,
         "type": "service",
         "unit_label": null,
-        "updated": 1605448746,
+        "updated": 1605777943,
         "prices": [
           {
             "id": "price_1Hfqx1DM7H4MIyD8ZYKwdOna",
