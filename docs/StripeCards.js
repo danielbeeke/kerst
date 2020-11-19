@@ -199,6 +199,9 @@ class StripeCards extends HTMLElement {
   }
 
   getActivePromotionCode (totalPrice) {
+    console.log(this.promotionCodes.filter(promotionCode => promotionCode.active &&
+      promotionCode.coupon?.metadata?.category !== this.category))
+
     return this.promotionCodes
     .sort((a, b) => a.restrictions.minimum_amount > b.restrictions.minimum_amount)
     .filter(promotionCode => promotionCode.active &&

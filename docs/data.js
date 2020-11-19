@@ -714,7 +714,9 @@ export default {
           "duration_in_months": null,
           "livemode": true,
           "max_redemptions": null,
-          "metadata": {},
+          "metadata": {
+            "category": "postcard"
+          },
           "name": "1,75 korting vanaf 8,75",
           "percent_off": null,
           "redeem_by": null,
