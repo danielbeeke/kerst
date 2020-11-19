@@ -21,7 +21,7 @@ class StripeCards extends HTMLElement {
     this.products = this.products
     .filter(product => product.active && product.metadata?.category === this.category)
 
-    this.products.sort((a, b) => a.metadata?.order > b.metadata?.order)
+    this.products.sort((a, b) => parseInt(a.metadata.order) - parseInt(b.metadata.order))
 
     if (this.getAttribute('add-shipping-costs') !== null) {
       this.shippingCostsProduct = this.products.find(product => product.metadata?.category === this.category && product.metadata?.shippingCosts)

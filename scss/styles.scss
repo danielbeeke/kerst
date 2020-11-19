@@ -101,6 +101,7 @@ html {
     text-align: left;
     flex-direction: column;
     flex: 1 1 200px;
+    break-inside: avoid;
     margin-bottom: 60px;
 
     .title {
