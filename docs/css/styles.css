@@ -517,11 +517,11 @@ html {
         }
 
         #app .site-header {
-            position: -webkit-sticky;
-            position: sticky;
+            position: fixed;
             top: 20px;
             text-align: left;
-            flex: 0 0 300px;
+            width: 300px;
+            height: 100%;
         }
 
         #app .site-title {
@@ -534,6 +534,7 @@ html {
         }
 
         #app stripe-cards {
+            margin-left: 320px;
             flex: 1 1 auto;
             margin-right: 40px;
             padding-top: 29px;
