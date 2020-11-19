@@ -603,7 +603,9 @@ export default {
           "duration_in_months": null,
           "livemode": true,
           "max_redemptions": null,
-          "metadata": {},
+          "metadata": {
+            "category": "postcard"
+          },
           "name": "7 korting bij 35 euro",
           "percent_off": null,
           "redeem_by": null,
@@ -638,7 +640,9 @@ export default {
           "duration_in_months": null,
           "livemode": true,
           "max_redemptions": null,
-          "metadata": {},
+          "metadata": {
+            "category": "postcard"
+          },
           "name": "5,25 vanaf 26,25",
           "percent_off": null,
           "redeem_by": null,
@@ -673,7 +677,9 @@ export default {
           "duration_in_months": null,
           "livemode": true,
           "max_redemptions": null,
-          "metadata": {},
+          "metadata": {
+            "category": "postcard"
+          },
           "name": "2,50 korting vanaf 17,50",
           "percent_off": null,
           "redeem_by": null,
