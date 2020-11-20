@@ -29,6 +29,7 @@ body[data-zoom="true"]:after {
             background: black;
             opacity: .4;
             width: 100%;
+            z-index: 4;
             height: 100%;
             position: fixed;
             top: 0;
@@ -416,7 +417,7 @@ html {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 4;
+    z-index: 6;
 }
 
 .zoomed-product-image {
