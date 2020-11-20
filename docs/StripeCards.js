@@ -17,6 +17,11 @@ class StripeCards extends HTMLElement {
   }
 
   async connectedCallback () {
+    window.app.addEventListener('languagechange', () => {
+      this.t = window.app.t
+      this.draw()
+    })
+
     this.env = this.getAttribute('env')
     this.shippingCosts = this.getAttribute('shipping-costs')
     this.shop = this.getAttribute('shop')
@@ -62,6 +67,7 @@ class StripeCards extends HTMLElement {
   }
 
   draw () {
+    this.t = window.app.t
     render(this, this.template())
   }
 
@@ -105,14 +111,14 @@ class StripeCards extends HTMLElement {
 
     return html`
     <div class="pay-footer">
-      ${totalQuantity ? html`<div class="buy-information">${totalQuantity} items, totaal: <strong class="price">${price}</strong><br><span class="shipping-costs">excl. verzendkosten</span></div>` : html`
-      <div class="buy-information">Er zit nog niets in het winkelmandje</div>`}
+      ${totalQuantity ? html`<div class="buy-information">${totalQuantity} ${this.t`items, totaal:`} <strong class="price">${price}</strong><br><span class="shipping-costs">${this.t`excl. verzendkosten`}</span></div>` : html`
+      <div class="buy-information">${this.t`Er zit nog niets in het winkelmandje.`}</div>`}
   
       <button class="${'go-to-stripe-button' + (!totalPrice ? ' disabled' : '') + (this.isCreatingSession ? ' is-working' : '')}" onclick="${() => this.checkout()}">
         ${this.isCreatingSession ? html`
-        <span class="text">Bezig met doorsturen...</span>
+        <span class="text">${this.t`Bezig met doorsturen...`}</span>
         ` : html`
-        <span class="text">Naar winkelmand</span> ${fa(faChevronRight)}
+        <span class="text">${this.t`Naar winkelmand`}</span> ${fa(faChevronRight)}
         `}
       </button>
     </div>`
@@ -130,7 +136,7 @@ class StripeCards extends HTMLElement {
       
           return html`
             <div index="${index}" order="${fixOrder(product.metadata?.order, this.products.length)}" class="${'card' + (lineItem ? ' has-line-item' : '') + ' ' + orientation}">
-              <h3 class="title">${product.name} ${product.metadata.status === 'new' ? html`<span class="new-product">Nieuw</span>` : ''}</h3>
+              <h3 class="title">${product.name} ${product.metadata.status === 'new' ? html`<span class="new-product">${this.t`Nieuw`}</span>` : ''}</h3>
     
               <div 
               style="${
@@ -153,11 +159,11 @@ class StripeCards extends HTMLElement {
                     ${lineItem?.quantity ? html`<span class="quantity">${lineItem.quantity}</span>` : ''}
                     ${fa(faShoppingCart)}
                   </button>
-                ` : html`<span class="no-stock">Niet meer<br>beschikbaar</span>`}
+                ` : html`<span class="no-stock">${this.t`Niet meer<br>beschikbaar`}</span>`}
     
                 ${product.metadata.stock ? html`
                   <span class="in-stock">
-                    <span class="stock-number">Nog <strong>${product.metadata.stock}</strong> op<br>voorraad</span>
+                    <span class="stock-number">${this.t`Nog <strong>${{stock: product.metadata.stock}}</strong> op<br>voorraad`}</span>
                   </span>
                 ` : ''}
               </div>
@@ -232,7 +238,7 @@ class StripeCards extends HTMLElement {
     this.draw()
 
     const stripe = await loadStripe(this.shop, {
-      locale: 'nl'
+      locale: window.app.language
     });
 
     const totalPrice = this.totalPrice()

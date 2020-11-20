@@ -546,3 +546,27 @@ html {
         }
     }
 }
+
+.language-button {
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+
+    img {
+        height: 14px;
+    }
+
+    &.hidden {
+        display: none;
+    }
+
+    @media only screen and (min-width: 1340px) {
+        position: fixed;
+        left: 285px;
+        right: auto;
+        z-index: 3;
+    }
+}
