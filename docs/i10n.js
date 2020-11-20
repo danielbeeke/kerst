@@ -70,8 +70,6 @@ export async function I10n (language, possibleLanguageCodes) {
       let stringsToTranslate = context;
       let codeString = mixString(stringsToTranslate, values, true);
 
-      console.log(codeString)
-
       /**
        * Translation is not available.
        */
