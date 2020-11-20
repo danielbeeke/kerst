@@ -253,7 +253,9 @@ class StripeCards extends HTMLElement {
         detail: this
       })
       this.dispatchEvent(event)
-      lineItems.push({ price: this.shippingCostsProduct.prices[0].id, quantity: 1 })
+      if (this.shippingCostsProduct) {
+        lineItems.push({ price: this.shippingCostsProduct.prices[0].id, quantity: 1 })
+      }
     }
 
     const response = await fetch(this.awsUrl + '/' + this.env + '/create-session', {

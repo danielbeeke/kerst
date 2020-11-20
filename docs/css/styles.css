@@ -589,6 +589,10 @@ html {
         font-weight: 300;
     }
 
+.thank-you img {
+        border-radius: 50%;
+    }
+
 @media only screen and (min-width: 721px) {
 
 .thank-you {
