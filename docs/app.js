@@ -54,6 +54,9 @@ Prijzen:<br>
         <h1 class="thanks-title">Bedankt voor de bestelling.</h1>
         <p>We gaan met uw bestelling aan de slag, ook hebben we een e-mail met de order bevestiging gestuurd.</p>
         <br>
+        <img src="https://i.gifer.com/94uO.gif">
+        <br>
+        <br>
         <button class="back-button" onclick="${() => { location.hash = ''; this.draw() }}">
         ${fa(faChevronLeft)}
         Terug naar het overzicht
