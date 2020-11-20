@@ -740,7 +740,7 @@ const unrollValues = ({stack}, values, length) => {
  * @param {string[]} template The template literals used to the define the content.
  * @param {Array} values Zero, one, or more interpolated values to render.
  */
-function Hole(type, template, values) {
+export function Hole(type, template, values) {
   this.type = type;
   this.template = template;
   this.values = values;
