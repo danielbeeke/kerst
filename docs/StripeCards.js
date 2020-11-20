@@ -261,7 +261,8 @@ class StripeCards extends HTMLElement {
       body: JSON.stringify({
         lineItems: lineItems,
         coupon: promotionCode ? promotionCode.id : null,
-        origin: location
+        origin: location,
+        locale: window.app.language
       }),
       headers: {
         'Accept': 'application/json',

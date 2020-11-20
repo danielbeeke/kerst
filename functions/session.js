@@ -7,7 +7,7 @@ async function _createSession (body, stripeApiKey) {
   const formData = {
     payment_method_types: ['ideal'],
     mode: 'payment',
-    locale: 'nl',
+    locale: body.locale,
     line_items: body.lineItems,
     shipping_address_collection: {
       allowed_countries: ['NL']
