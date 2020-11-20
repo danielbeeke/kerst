@@ -81,7 +81,7 @@ class StripeCards extends HTMLElement {
         onclick="${() => { zoomedProduct.zoom = false; this.draw() }}" 
         class="zoomed-product" 
         style="${'padding-bottom: ' + (orientation === 'portrait' ? 112.77 : 70.93) + '%;'}">
-          <img class="zoomed-product-image" src="${zoomedProduct.images[0]}">
+          <img class="zoomed-product-image" src="${'https://images.weserv.nl/?url=' + zoomedProduct.images[0]}">
         </div>
       ` : ''}
     `
@@ -102,7 +102,8 @@ class StripeCards extends HTMLElement {
 
     return html`
     <div class="pay-footer">
-      ${totalQuantity ? html`<div class="buy-information">${totalQuantity} items, totaal: <strong class="price">${price}</strong><br><span class="shipping-costs">excl. verzendkosten</span></div>` : ''}
+      ${totalQuantity ? html`<div class="buy-information">${totalQuantity} items, totaal: <strong class="price">${price}</strong><br><span class="shipping-costs">excl. verzendkosten</span></div>` : html`
+      <div class="buy-information">Er zit nog niets in het winkelmandje</div>`}
   
       <button class="${'go-to-stripe-button' + (!totalPrice ? ' disabled' : '') + (this.isCreatingSession ? ' is-working' : '')}" onclick="${() => this.checkout()}">
         ${this.isCreatingSession ? html`
@@ -117,23 +118,21 @@ class StripeCards extends HTMLElement {
   templateCards () {
     return html`
       <div class="cards">
-        ${this.products.map(product => {
+        ${this.products.map((product, index) => {
           const lineItem = this.basket.get(product)
           const price = product.prices[0].unit_amount / 100
-          const orientation = product.metadata.orientation
-      
+          const orientation = product.metadata.orientation ?? 'landscape'
           const buyable = !('stock' in product.metadata && !product.metadata.stock)
-      
           const limitReached = lineItem && product.metadata.stock && lineItem.quantity === parseInt(product.metadata.stock)
       
           return html`
-            <div order="${fixOrder(product.metadata?.order, this.products.length)}" class="${'card' + (lineItem ? ' has-line-item' : '') + ' ' + orientation}">
+            <div index="${index}" order="${fixOrder(product.metadata?.order, this.products.length)}" class="${'card' + (lineItem ? ' has-line-item' : '') + ' ' + orientation}">
               <h3 class="title">${product.name} ${product.metadata.status === 'new' ? html`<span class="new-product">Nieuw</span>` : ''}</h3>
     
               <div 
               style="${
                 'padding-bottom: ' + (orientation === 'portrait' ? 112.77 : 70.93) + '%; ' +
-                'background-image: url("https://images.weserv.nl/?w=' + (orientation === 'portrait' ? 400 : 500) + '&url=' + product.images[0] + '")'}" 
+                'background-image: url("https://images.weserv.nl/?w=' + (orientation === 'portrait' ? 600 : 700) + '&url=' + product.images[0] + '")'}" 
               onclick="${() => { product.zoom = !product.zoom; this.draw() }}" 
               class="image"></div>
                           

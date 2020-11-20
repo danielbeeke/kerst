@@ -13,6 +13,8 @@
 
     --primary: var(--blue);
     --primary-light: var(--blue-light);
+
+    --pink: #f8dbdd;
 }
 
 body {
@@ -63,14 +65,14 @@ html {
 
 .site-logo {
     margin-top: 20px;
-    max-width: 100px;
+    max-width: 70px;
 }
 
 .site-introduction {
     padding: 0 20px;
     max-width: 600px;
-    line-height: 26px;
-    font-size: 14px;
+    line-height: 24px;
+    font-size: 13px;
     margin: 0 auto 60px;
 }
 
@@ -87,11 +89,11 @@ html {
     column-gap: 50px;
 
     @media only screen and (min-width: 721px) {
-        columns: 2;
+        column-count: 2;
     }
 
     @media only screen and (min-width: 721px) {
-        columns: 2;
+        column-count: 2;
     }
 }
 
@@ -101,8 +103,11 @@ html {
     text-align: left;
     flex-direction: column;
     flex: 1 1 200px;
-    break-inside: avoid;
     margin-bottom: 60px;
+
+    break-inside: avoid;
+    break-after: avoid;
+    break-before: avoid;
 
     .title {
         color: var(--gray-dark);
@@ -441,23 +446,13 @@ html {
         position: relative;
         align-items: flex-start;
 
-        &:after {
-            content: '';
-            display: block;
-            position: fixed;
-            left: 0;
-            width: 320px;
-            height: 100vh;
-            opacity: .2;
-            background: #ddd;
-            z-index: -2;
-        }
-
         .site-header {
+            background: #f5f5f5;
             position: fixed;
-            top: 20px;
+            top: 0;
+            padding-top: 20px;
             text-align: left;
-            width: 300px;
+            width: 320px;
             height: 100%;
         }
 
@@ -468,6 +463,8 @@ html {
 
         .site-introduction {
             padding-left: 40px;
+            max-height: calc(100vh - 392px);
+            overflow: auto;
         }
 
         stripe-cards {
@@ -483,8 +480,13 @@ html {
 
         .pay-footer {
             position: fixed;
-            left: 40px;
-            margin-bottom: 10px;
+            padding-left: 40px;
+            left: 0;
+            width: 320px;
+            background: var(--pink);
+            bottom: 0;
+            padding-bottom: 20px;
+            padding-top: 10px;
             align-items: flex-start;
             flex-direction: column;
 

@@ -27,7 +27,10 @@ class App {
       <div class="site-header">
       <img class="site-logo" src="https://stripe-camo.global.ssl.fastly.net/722739ee9f71a98ed5959ee092f39f53c839a944/68747470733a2f2f66696c65732e7374726970652e636f6d2f66696c65732f4d44423859574e6a6446387853455234566d6445545464494e45314a6555513466475a6662476c325a56387865544e53616a597a6331644b557a424e526a5647546b7877576b566853545530307a70667a3033454e">
         <h1 class="site-title">Kerstkaarten</h1>
-        <p class="site-introduction">Wat is er nu leuker dan een mooie kaart die op de mat valt? Speciaal voor kerst of gewoon zomaar. Juist nu we niet zo veel samen kunnen zijn kan een kaartje extra goed doen! De kaarten zijn prints van geschilderde gouache illustraties en hebben een formaat van 10 x 15 cm.<br><br>Met liefde gemaakt!</p>
+        <p class="site-introduction">Wat is er nu leuker dan een mooie kaart die op de mat valt? Speciaal voor kerst of gewoon zomaar. Juist nu we niet zo veel samen kunnen zijn kan een kaartje extra goed doen! De kaarten zijn prints van geschilderde gouache illustraties en hebben een formaat van 10 x 15 cm.<br><br>Met liefde gemaakt!<br><br>
+        
+Prijzen:<br>
+5 voor €8<br>10 voor €15<br>15 voor €21<br>20 voor €29</p>
         </div>
       <stripe-cards add-shipping-costs category="postcard" env="${env}" src="./data.js" shop="${shopId}" aws-url="${awsApi}" />
     `

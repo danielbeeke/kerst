@@ -13,6 +13,8 @@
 
     --primary: var(--blue);
     --primary-light: var(--blue-light);
+
+    --pink: #f8dbdd;
 }
 
 body {
@@ -62,14 +64,14 @@ html {
 
 .site-logo {
     margin-top: 20px;
-    max-width: 100px;
+    max-width: 70px;
 }
 
 .site-introduction {
     padding: 0 20px;
     max-width: 600px;
-    line-height: 26px;
-    font-size: 14px;
+    line-height: 24px;
+    font-size: 13px;
     margin: 0 auto 60px;
 }
 
@@ -91,16 +93,16 @@ html {
 @media only screen and (min-width: 721px) {
 
 .cards {
-        -moz-columns: 2;
-             columns: 2
+        -moz-column-count: 2;
+             column-count: 2
 }
     }
 
 @media only screen and (min-width: 721px) {
 
 .cards {
-        -moz-columns: 2;
-             columns: 2
+        -moz-column-count: 2;
+             column-count: 2
 }
     }
 
@@ -110,10 +112,19 @@ html {
     text-align: left;
     flex-direction: column;
     flex: 1 1 200px;
-    page-break-inside: avoid;
-    -moz-column-break-inside: avoid;
-         break-inside: avoid;
     margin-bottom: 60px;
+
+    page-break-inside: avoid;
+
+    -moz-column-break-inside: avoid;
+
+         break-inside: avoid;
+    page-break-after: avoid;
+    -moz-column-break-after: avoid;
+         break-after: avoid;
+    page-break-before: avoid;
+    -moz-column-break-before: avoid;
+         break-before: avoid;
 }
 
 .card .title {
@@ -507,23 +518,13 @@ html {
         align-items: flex-start
 }
 
-        #app:after {
-            content: '';
-            display: block;
-            position: fixed;
-            left: 0;
-            width: 320px;
-            height: 100vh;
-            opacity: .2;
-            background: #ddd;
-            z-index: -2;
-        }
-
         #app .site-header {
+            background: #f5f5f5;
             position: fixed;
-            top: 20px;
+            top: 0;
+            padding-top: 20px;
             text-align: left;
-            width: 300px;
+            width: 320px;
             height: 100%;
         }
 
@@ -534,6 +535,8 @@ html {
 
         #app .site-introduction {
             padding-left: 40px;
+            max-height: calc(100vh - 392px);
+            overflow: auto;
         }
 
         #app stripe-cards {
@@ -549,8 +552,14 @@ html {
 
         #app .pay-footer {
             position: fixed;
-            left: 40px;
-            margin-bottom: 10px;
+            padding-left: 40px;
+            left: 0;
+            width: 320px;
+            background: #f8dbdd;
+            background: var(--pink);
+            bottom: 0;
+            padding-bottom: 20px;
+            padding-top: 10px;
             align-items: flex-start;
             flex-direction: column;
         }
