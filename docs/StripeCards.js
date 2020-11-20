@@ -3,6 +3,13 @@ import { fa } from './Helpers.js'
 import { faChevronRight, faShoppingCart, faTimes } from './web_modules/@fortawesome/free-solid-svg-icons.js'
 import { loadStripe } from './web_modules/@stripe/stripe-js.js';
 
+const fixOrder = (number, total) => {
+  number = parseInt(number)
+  return window.innerWidth > 720 ? number : (
+    number > total / 2 ? number - (total / 2) : number
+  )
+}
+
 class StripeCards extends HTMLElement {
   constructor() {
     super()
@@ -15,13 +22,12 @@ class StripeCards extends HTMLElement {
     this.shop = this.getAttribute('shop')
     this.category = this.getAttribute('category')
     this.awsUrl = this.getAttribute('aws-url')
-    const dataModule = await import(this.dateFilePath)
-    Object.assign(this, dataModule.default[this.env])
+    const response = await fetch(this.awsUrl + '/' + this.env + '/get-stock')
+    const stock = await response.json()
+    Object.assign(this, stock)
 
     this.products = this.products
     .filter(product => product.active && product.metadata?.category === this.category)
-
-    this.products.sort((a, b) => parseInt(a.metadata.order) - parseInt(b.metadata.order))
 
     if (this.getAttribute('add-shipping-costs') !== null) {
       this.shippingCostsProduct = this.products.find(product => product.metadata?.category === this.category && product.metadata?.shippingCosts)
@@ -30,9 +36,10 @@ class StripeCards extends HTMLElement {
       }
     }
 
+    this.products.sort((a, b) => fixOrder(a.metadata.order, this.products.length) - fixOrder(b.metadata.order, this.products.length))
+
     for (const product of this.products) {
       product.zoom = false
-      if ('stock' in product.metadata) product.hasFreshStock = false
     }
     this.basket = new Map()
 
@@ -48,18 +55,6 @@ class StripeCards extends HTMLElement {
     }
 
     this.currencyFormat = new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR' })
-    this.draw()
-
-    const response = await fetch(this.awsUrl + '/' + this.env + '/get-stock')
-    const stock = await response.json()
-    for (const [productId, inStock] of Object.entries(stock)) {
-      const product = this.products.find(product => product.id === productId)
-      if (product) {
-        product.metadata.stock = inStock
-        product.hasFreshStock = true
-      }
-    }
-
     this.draw()
   }
 
@@ -78,13 +73,14 @@ class StripeCards extends HTMLElement {
   templateZoomedCard () {
     const zoomedProduct = this.products.find(product => product.zoom)
     document.body.dataset.zoom = !!zoomedProduct
+    const orientation = zoomedProduct ? zoomedProduct.metadata.orientation : null
 
     return html`
       ${zoomedProduct ? html`
         <div 
         onclick="${() => { zoomedProduct.zoom = false; this.draw() }}" 
         class="zoomed-product" 
-        style="${'padding-bottom: ' + (zoomedProduct.image.height / zoomedProduct.image.width * 100) + '%;'}">
+        style="${'padding-bottom: ' + (orientation === 'portrait' ? 112.77 : 70.93) + '%;'}">
           <img class="zoomed-product-image" src="${zoomedProduct.images[0]}">
         </div>
       ` : ''}
@@ -124,22 +120,23 @@ class StripeCards extends HTMLElement {
         ${this.products.map(product => {
           const lineItem = this.basket.get(product)
           const price = product.prices[0].unit_amount / 100
-          const orientation = product.image.height > product.image.width ? 'portrait' : 'landscape'
+          const orientation = product.metadata.orientation
       
           const buyable = !('stock' in product.metadata && !product.metadata.stock)
       
           const limitReached = lineItem && product.metadata.stock && lineItem.quantity === parseInt(product.metadata.stock)
       
           return html`
-            <div order="${product.metadata?.order}" class="${'card' + (lineItem ? ' has-line-item' : '') + ' ' + orientation}">
+            <div order="${fixOrder(product.metadata?.order, this.products.length)}" class="${'card' + (lineItem ? ' has-line-item' : '') + ' ' + orientation}">
               <h3 class="title">${product.name} ${product.metadata.status === 'new' ? html`<span class="new-product">Nieuw</span>` : ''}</h3>
     
               <div 
-              style="${'padding-bottom: ' + (product.image.height / product.image.width * 100 * (orientation === 'portrait' ? .8 : 1)) + '%; background-image: url("data:image/png;base64,' + product.thumb + '")'}" 
+              style="${
+                'padding-bottom: ' + (orientation === 'portrait' ? 112.77 : 70.93) + '%; ' +
+                'background-image: url("' + product.images[0] + '")'}" 
               onclick="${() => { product.zoom = !product.zoom; this.draw() }}" 
               class="image"></div>
                           
-              ${product.hasFreshStock || !('stock' in product.metadata) ? html`
               <div class="${'add-to-basket' + (limitReached ? ' disabled' : '')}">
                 <span class="price">${this.currencyFormat.format(lineItem ? price * lineItem.quantity : price)}</span>
     
@@ -162,7 +159,6 @@ class StripeCards extends HTMLElement {
                   </span>
                 ` : ''}
               </div>
-              ` : ''}
               
             </div>
             `}
