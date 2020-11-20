@@ -32,7 +32,14 @@ class App {
 Prijzen:<br>
 5 voor €8<br>10 voor €15<br>15 voor €21<br>20 voor €29</p>
         </div>
-      <stripe-cards add-shipping-costs category="postcard" env="${env}" src="./data.js" shop="${shopId}" aws-url="${awsApi}" />
+      <stripe-cards oncalculateshipping="${event => {
+        const stripeCards = event.detail
+        for  (const shippingCostsProduct of stripeCards.shippingCostsProducts) {
+          if (!event.detail.shippingCostsProduct && parseInt(shippingCostsProduct.metadata.shippingCosts) <= stripeCards.totalQuantity()) {
+            stripeCards.shippingCostsProduct = shippingCostsProduct
+          }
+        }
+      }}" category="postcard" env="${env}" src="./data.js" shop="${shopId}" aws-url="${awsApi}" />
     `
   }
 

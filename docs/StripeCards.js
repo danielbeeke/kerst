@@ -29,10 +29,13 @@ class StripeCards extends HTMLElement {
     this.products = this.products
     .filter(product => product.active && product.metadata?.category === this.category)
 
-    if (this.getAttribute('add-shipping-costs') !== null) {
-      this.shippingCostsProduct = this.products.find(product => product.metadata?.category === this.category && product.metadata?.shippingCosts)
-      if (this.shippingCostsProduct) {
-        this.products.splice(this.products.indexOf(this.shippingCostsProduct), 1)
+    this.shippingCostsProducts = this.products
+      .filter(product => product.metadata?.category === this.category && product.metadata?.shippingCosts)
+      .sort((a, b) => parseInt(b.metadata.shippingCosts) - parseInt(a.metadata.shippingCosts))
+
+    if (this.shippingCostsProducts) {
+      for (const shippingCostsProduct of this.shippingCostsProducts) {
+        this.products.splice(this.products.indexOf(shippingCostsProduct), 1)
       }
     }
 
@@ -239,7 +242,11 @@ class StripeCards extends HTMLElement {
 
     const lineItems = this.createLineItems()
 
-    if (this.shippingCostsProduct) {
+    if (this.shippingCostsProducts) {
+      const event = new CustomEvent('calculateshipping', {
+        detail: this
+      })
+      this.dispatchEvent(event)
       lineItems.push({ price: this.shippingCostsProduct.prices[0].id, quantity: 1 })
     }
 
