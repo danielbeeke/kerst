@@ -133,7 +133,7 @@ class StripeCards extends HTMLElement {
               <div 
               style="${
                 'padding-bottom: ' + (orientation === 'portrait' ? 112.77 : 70.93) + '%; ' +
-                'background-image: url("' + product.images[0] + '")'}" 
+                'background-image: url("https://images.weserv.nl/?w=' + (orientation === 'portrait' ? 400 : 500) + '&url=' + product.images[0] + '")'}" 
               onclick="${() => { product.zoom = !product.zoom; this.draw() }}" 
               class="image"></div>
                           
