@@ -6,7 +6,7 @@ import { I10n } from './i10n.js'
 
 const shopIdProd = 'pk_live_51HDxVgDM7H4MIyD87ABr6smKDQJBODpzdva3R5F6ij2RGVQptfopicFRc8zJDStQHstacl2oziX2jpZf2B5yEJSR00x2xBsX13'
 const shopIdTest = 'pk_test_51HDxVgDM7H4MIyD8kbH9mdvrHgW1V0o45wDhb15zM6b55DZP2mLeebWFaRUBr0NDCfQw0KHijFhxd1HKv4gXkTam001v7tho4R'
-let env = location.hostname === 'kerst.wilmavis.nl' ? 'prod' : 'test'
+let env = ['kerst.wilmavis.nl', 'shop.wilmavis.nl'].includes(location.hostname) ? 'prod' : 'test'
 if (localStorage.fakeProd) env = 'prod'
 const shopId = env === 'prod' ? shopIdProd : shopIdTest
 const awsApi = env === 'prod' ? 'https://5ml1hmy4s7.execute-api.eu-central-1.amazonaws.com' : 'https://znpinus3i4.execute-api.eu-central-1.amazonaws.com'
