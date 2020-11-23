@@ -42,7 +42,7 @@ class App extends EventTarget {
         <h1 class="site-title">${this.t`Kerstkaarten`}</h1>
         <p class="site-introduction">${this.t`Wat is er nu leuker dan een mooie kaart die op de mat valt? Speciaal voor kerst of gewoon zomaar. Juist nu we niet zo veel samen kunnen zijn kan een kaartje extra goed doen! De kaarten zijn prints van geschilderde gouache illustraties en hebben een formaat van 10 x 15 cm. Met liefde gemaakt!`}
         <br><br>
-        ${this.t`Prijzen:<br>5 voor €8<br>10 voor €15<br>15 voor €21<br>20 voor €29`}
+        ${this.t`Prijzen:<br>5 voor €8<br>10 voor €15<br>15 voor €21<br>20 voor €28`}
         </p>
         </div>
       <stripe-cards oncalculateshipping="${event => {
