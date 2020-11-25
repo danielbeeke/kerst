@@ -32,10 +32,10 @@ class StripeCards extends HTMLElement {
     Object.assign(this, stock)
 
     this.products = this.products
-    .filter(product => product.active && product.metadata?.category === this.category)
+    .filter(product => product.active && product.metadata.category === this.category)
 
     this.shippingCostsProducts = this.products
-      .filter(product => product.metadata?.category === this.category && product.metadata?.shippingCosts)
+      .filter(product => product.metadata.category === this.category && product.metadata.shippingCosts)
       .sort((a, b) => parseInt(b.metadata.shippingCosts) - parseInt(a.metadata.shippingCosts))
 
     if (this.shippingCostsProducts) {
@@ -130,12 +130,12 @@ class StripeCards extends HTMLElement {
         ${this.products.map((product, index) => {
           const lineItem = this.basket.get(product)
           const price = product.prices[0].unit_amount / 100
-          const orientation = product.metadata.orientation ?? 'landscape'
+          const orientation = product.metadata.orientation ? product.metadata.orientation : 'landscape'
           const buyable = !('stock' in product.metadata && !product.metadata.stock)
           const limitReached = lineItem && product.metadata.stock && lineItem.quantity === parseInt(product.metadata.stock)
       
           return html`
-            <div index="${index}" order="${fixOrder(product.metadata?.order, this.products.length)}" class="${'card' + (lineItem ? ' has-line-item' : '') + ' ' + orientation}">
+            <div index="${index}" order="${fixOrder(product.metadata.order, this.products.length)}" class="${'card' + (lineItem ? ' has-line-item' : '') + ' ' + orientation}">
               <h3 class="title">${product.name} ${product.metadata.status === 'new' ? html`<span class="new-product">${this.t`Nieuw`}</span>` : ''}</h3>
     
               <div 
@@ -156,7 +156,7 @@ class StripeCards extends HTMLElement {
     
                 ${buyable ? html`
                   <button class="add-product-button no-button" onclick="${() => { this.increaseQuantityForProduct(product); this.draw() }}">
-                    ${lineItem?.quantity ? html`<span class="quantity">${lineItem.quantity}</span>` : ''}
+                    ${lineItem && lineItem.quantity ? html`<span class="quantity">${lineItem.quantity}</span>` : ''}
                     ${fa(faShoppingCart)}
                   </button>
                 ` : html`<span class="no-stock">${this.t`Niet meer<br>beschikbaar`}</span>`}
@@ -207,7 +207,7 @@ class StripeCards extends HTMLElement {
     .sort((a, b) => a.restrictions.minimum_amount - b.restrictions.minimum_amount)
     .filter(promotionCode => promotionCode.active &&
       totalPrice >= promotionCode.restrictions.minimum_amount / 100 &&
-      promotionCode.coupon?.metadata?.category === this.category)
+      promotionCode.coupon.metadata.category === this.category)
     .pop()
   }
 
