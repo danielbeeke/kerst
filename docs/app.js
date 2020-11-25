@@ -15,7 +15,7 @@ class App extends EventTarget {
   constructor() {
     super()
     this.appElement = document.querySelector('#app')
-    this.language = localStorage.getItem('language') ?? 'nl'
+    this.language = localStorage.getItem('language') ? localStorage.getItem('language') : 'nl'
     this.languages = [
       { code: 'nl', label: 'Nederlands' },
       { code: 'en', label: 'English' },
