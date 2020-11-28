@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@sentry/browser": "^5.27.6",
+    "@sentry/tracing": "^5.27.6",
     "@stripe/stripe-js": "^1.10.0",
     "aws-sdk": "^2.793.0",
     "body-parser": "^1.19.0",

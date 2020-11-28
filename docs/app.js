@@ -4,6 +4,18 @@ import { faChevronLeft } from './web_modules/@fortawesome/free-solid-svg-icons.j
 import { fa } from './Helpers.js'
 import { I10n } from './i10n.js'
 
+import * as Sentry from './web_modules/@sentry/browser.js';
+import { Integrations } from './web_modules/@sentry/tracing.js';
+
+Sentry.init({
+  dsn: 'https://147c08fe304e48ac880f0b5404972201@o483393.ingest.sentry.io/5535945',
+  integrations: [
+    new Integrations.BrowserTracing(),
+  ],
+
+  tracesSampleRate: 1.0,
+});
+
 const shopIdProd = 'pk_live_51HDxVgDM7H4MIyD87ABr6smKDQJBODpzdva3R5F6ij2RGVQptfopicFRc8zJDStQHstacl2oziX2jpZf2B5yEJSR00x2xBsX13'
 const shopIdTest = 'pk_test_51HDxVgDM7H4MIyD8kbH9mdvrHgW1V0o45wDhb15zM6b55DZP2mLeebWFaRUBr0NDCfQw0KHijFhxd1HKv4gXkTam001v7tho4R'
 let env = ['kerst.wilmavis.nl', 'shop.wilmavis.nl'].includes(location.hostname) ? 'prod' : 'test'
