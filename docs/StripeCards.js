@@ -134,7 +134,7 @@ class StripeCards extends HTMLElement {
           const buyable = !('stock' in product.metadata && !product.metadata.stock)
           const limitReached = lineItem && product.metadata.stock && lineItem.quantity === parseInt(product.metadata.stock)
       
-          return html`
+          return html.for(product)`
             <div index="${index}" order="${fixOrder(product.metadata.order, this.products.length)}" class="${'card' + (lineItem ? ' has-line-item' : '') + ' ' + orientation}">
               <h3 class="title">${product.name} ${product.metadata.status === 'new' ? html`<span class="new-product">${this.t`Nieuw`}</span>` : ''}</h3>
     
