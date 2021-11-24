@@ -132,7 +132,7 @@ class StripeCards extends HTMLElement {
           const price = product.prices[0].unit_amount / 100
           const orientation = product.metadata.orientation ? product.metadata.orientation : 'landscape'
           const buyable = !('stock' in product.metadata && !product.metadata.stock)
-          const limitReached = lineItem && product.metadata.stock && lineItem.quantity === parseInt(product.metadata.stock)
+          const limitReached = product.metadata.stock === 'disabled' || lineItem && product.metadata.stock && lineItem.quantity === parseInt(product.metadata.stock)
       
           return html.for(product)`
             <div index="${index}" order="${fixOrder(product.metadata.order, this.products.length)}" class="${'card' + (lineItem ? ' has-line-item' : '') + ' ' + orientation}">
