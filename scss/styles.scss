@@ -86,15 +86,16 @@ html {
     width: 100%;
     max-width: 980px;
     margin: 0 auto 70px;
-    padding: 20px;
+    padding: 20px 120px;
     column-gap: 50px;
 
     @media only screen and (min-width: 721px) {
         column-count: 2;
     }
 
-    @media only screen and (min-width: 721px) {
-        column-count: 2;
+    @media only screen and (min-width: 1580px) {
+        column-count: 3;
+        max-width: 1480px;
     }
 }
 

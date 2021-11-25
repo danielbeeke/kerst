@@ -19,6 +19,9 @@ Sentry.init({
 const shopIdProd = 'pk_live_51HDxVgDM7H4MIyD87ABr6smKDQJBODpzdva3R5F6ij2RGVQptfopicFRc8zJDStQHstacl2oziX2jpZf2B5yEJSR00x2xBsX13'
 const shopIdTest = 'pk_test_51HDxVgDM7H4MIyD8kbH9mdvrHgW1V0o45wDhb15zM6b55DZP2mLeebWFaRUBr0NDCfQw0KHijFhxd1HKv4gXkTam001v7tho4R'
 let env = ['kerst.wilmavis.nl', 'shop.wilmavis.nl'].includes(location.hostname) ? 'prod' : 'test'
+
+env = 'prod'
+
 if (localStorage.fakeProd) env = 'prod'
 const shopId = env === 'prod' ? shopIdProd : shopIdTest
 const awsApi = env === 'prod' ? 'https://5ml1hmy4s7.execute-api.eu-central-1.amazonaws.com' : 'https://znpinus3i4.execute-api.eu-central-1.amazonaws.com'
@@ -54,7 +57,7 @@ class App extends EventTarget {
         <h1 class="site-title">${this.t`Kerstkaarten`}</h1>
         <p class="site-introduction">${this.t`Wat is er nu leuker dan een mooie kaart die op de mat valt? Speciaal voor kerst of gewoon zomaar. Juist nu we niet zo veel samen kunnen zijn kan een kaartje extra goed doen! De kaarten zijn prints van geschilderde gouache illustraties en hebben een formaat van 10 x 15 cm. Met liefde gemaakt!`}
         <br><br>
-        ${this.t`Prijzen:<br>5 voor €8<br>10 voor €15<br>15 voor €21<br>20 voor €28`}
+        ${this.t`Prijzen:<br>5 voor €9.50<br>10 voor €18.50<br>15 voor €27<br>20 voor €35`}
         </p>
         </div>
       <stripe-cards oncalculateshipping="${event => {

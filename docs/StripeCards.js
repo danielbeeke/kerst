@@ -161,11 +161,6 @@ class StripeCards extends HTMLElement {
                   </button>
                 ` : html`<span class="no-stock">${this.t`Niet meer<br>beschikbaar`}</span>`}
     
-                ${product.metadata.stock && product.metadata.stock !== 'disabled' ? html`
-                  <span class="in-stock">
-                    <span class="stock-number">${this.t`Nog <strong>${{stock: product.metadata.stock}}</strong> op<br>voorraad`}</span>
-                  </span>
-                ` : ''}
               </div>
               
             </div>
