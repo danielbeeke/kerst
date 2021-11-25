@@ -542,6 +542,11 @@ html {
             overflow: auto;
         }
 
+            #app .site-introduction ul {
+                padding: 0;
+                padding-left: 16px;
+            }
+
         #app stripe-cards {
             margin-left: 320px;
             flex: 1 1 auto;

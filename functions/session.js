@@ -5,12 +5,12 @@ const request = require('helpers.js').request
 
 async function _createSession (body, stripeApiKey) {
   const formData = {
-    payment_method_types: ['ideal'],
+    payment_method_types: ['ideal', 'card'],
     mode: 'payment',
     locale: body.locale,
     line_items: body.lineItems,
     shipping_address_collection: {
-      allowed_countries: ['NL']
+      allowed_countries: ["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE", "GB"]
     },
     success_url: body.origin.origin + '#success',
     cancel_url: body.origin.origin + '#cancel',

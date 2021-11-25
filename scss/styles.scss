@@ -468,6 +468,11 @@ html {
             padding-left: 40px;
             max-height: calc(100vh - 392px);
             overflow: auto;
+
+            ul {
+                padding: 0;
+                padding-left: 16px;
+            }
         }
 
         stripe-cards {
