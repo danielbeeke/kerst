@@ -55,7 +55,7 @@ class App extends EventTarget {
       <div class="site-header">
       <img class="site-logo" src="https://stripe-camo.global.ssl.fastly.net/722739ee9f71a98ed5959ee092f39f53c839a944/68747470733a2f2f66696c65732e7374726970652e636f6d2f66696c65732f4d44423859574e6a6446387853455234566d6445545464494e45314a6555513466475a6662476c325a56387865544e53616a597a6331644b557a424e526a5647546b7877576b566853545530307a70667a3033454e">
         <h1 class="site-title">${this.t`Kerstkaarten`}</h1>
-        <p class="site-introduction">${this.t`Wat is er nu leuker dan een mooie kaart op de mat valt? Speciaal voor kerst of gewoon zomaar. Juist nu we niet zo veel samen kunnen zijn kan een kaartje extra goed doen!<br><br>Het formaat van de kaarten is 148 x 105 mm.<br>Inclusief kraft envelop van 100% gerecycled papier.<br><br>Prijzen: 5 voor €9.50 | 10 voor €18.50 | 15 voor €27 | 20 voor €35`}
+        <p class="site-introduction">${this.t`Wat is er nu leuker dan een mooie kaart die op de mat valt? Speciaal voor kerst of gewoon zomaar. Juist nu we niet zo veel samen kunnen zijn kan een kaartje extra goed doen!<br><br>Het formaat van de kaarten is 148 x 105 mm.<br>Inclusief kraft envelop van 100% gerecycled papier.<br><br>Prijzen: 5 voor €9.50 | 10 voor €18.50 | 15 voor €27 | 20 voor €35`}
         </p>
         </div>
       <stripe-cards oncalculateshipping="${event => {
