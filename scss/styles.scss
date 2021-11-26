@@ -59,9 +59,13 @@ html {
     width: 100%;
     text-align: center;
     margin: 0;
-    padding: 50px;
+    padding: 20px;
     font-weight: 300;
     color: var(--primary);
+
+    @media only screen and (min-width: 721px) {
+        padding: 50px;
+    }
 }
 
 .site-logo {
@@ -74,7 +78,11 @@ html {
     max-width: 600px;
     line-height: 24px;
     font-size: 13px;
-    margin: 0 auto 60px;
+    margin: 0 auto 30px;
+
+    @media only screen and (min-width: 721px) {
+        margin: 0 auto 60px;
+    }
 }
 
 #app {
