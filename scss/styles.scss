@@ -132,10 +132,17 @@ html {
         background: var(--gray-light);
         display: block;
         max-width: 100%;
+        position: relative;
         box-shadow: 0 0 5px rgba(0, 0, 0, .2);
         cursor: zoom-in;
         transition: all var(--speed) ease-in-out;
         background-size: contain;
+    }
+
+    .inner-image {
+        position: absolute;
+        width: 100%;
+        height: 100%;
     }
 
     .add-to-basket {

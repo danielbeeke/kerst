@@ -158,11 +158,18 @@ html {
         background: var(--gray-light);
         display: block;
         max-width: 100%;
+        position: relative;
         box-shadow: 0 0 5px rgba(0, 0, 0, .2);
         cursor: zoom-in;
         transition: all .3s ease-in-out;
         transition: all var(--speed) ease-in-out;
         background-size: contain;
+    }
+
+.card .inner-image {
+        position: absolute;
+        width: 100%;
+        height: 100%;
     }
 
 .card .add-to-basket {

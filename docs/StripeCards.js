@@ -157,13 +157,14 @@ class StripeCards extends HTMLElement {
               data-pswp-height=${orientation === 'landscape' ? 710 : 1000} 
               target="_blank"
               style="${
-                'padding-bottom: ' + (orientation === 'portrait' ? 112.77 : 70.93) + '%; ' +
-                'background-image: url("https://images.weserv.nl/?w=' + (orientation === 'portrait' ? 600 : 700) + '&url=' + product.images[0] + '")'}" 
+                'padding-bottom: ' + (orientation === 'portrait' ? 112.77 : 70.93) + '%; '}" 
               onclick="${() => { 
                 product.zoom = !product.zoom; 
                 this.draw() 
               }}" 
-              class="image" aria-label=${product.metadata.seo}></a>
+              class="image" aria-label=${product.metadata.seo}>
+              <img class="inner-image" src=${'https://images.weserv.nl/?url=' + product.images[0] + '&width=480'} />
+              </a>
                           
               ${photos.map((photo) => html`<a 
               data-pswp-width=${photo[1] ?? 1000} 
