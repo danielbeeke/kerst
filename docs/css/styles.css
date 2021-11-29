@@ -1223,3 +1223,28 @@ html {
   .pswp--one-slide .pswp__counter {
     display: none;
   }
+
+  .pswp__custom-caption {
+    font-size: 16px;
+    color: #fff;
+    width: calc(100% - 32px);
+    max-width: 400px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, .7);
+    position: absolute;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%);
+  }
+
+  .pswp__custom-caption:empty {
+        display: none;
+    }
+  .pswp__custom-caption a {
+    color: #fff;
+    text-decoration: underline;
+  }
+  .hidden-caption-content {
+    display: none;
+  }

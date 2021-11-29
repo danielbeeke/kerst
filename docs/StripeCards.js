@@ -78,6 +78,31 @@ class StripeCards extends HTMLElement {
         pswpModule: '/photoswipe.esm.js'
       })
 
+      const lightbox = this.photoswipe
+
+      this.photoswipe.on('uiRegister', function() {
+        lightbox.pswp.ui.registerElement({
+          name: 'custom-caption',
+          order: 9,
+          isButton: false,
+          appendTo: 'root',
+          html: 'Caption text',
+          onInit: (el, pswp) => {
+            lightbox.pswp.on('change', () => {
+              const currSlideElement = lightbox.pswp.currSlide.data.element;
+
+              const card = currSlideElement.closest('.card')
+
+              let captionHTML = '';
+              if (currSlideElement) {
+                  captionHTML = card.querySelector('.image').querySelector('img') ? card.querySelector('.image').querySelector('img').getAttribute('alt') : '';
+              }
+              el.innerHTML = captionHTML || '';
+            });
+          }
+        });
+      });
+
       this.photoswipe.init()
     }
 
@@ -163,7 +188,7 @@ class StripeCards extends HTMLElement {
                 this.draw() 
               }}" 
               class="image" aria-label=${product.metadata.seo}>
-              <img class="inner-image" src=${'https://images.weserv.nl/?url=' + product.images[0] + '&width=680'} />
+              <img alt=${product.metadata.description} class="inner-image" src=${'https://images.weserv.nl/?url=' + product.images[0] + '&width=680'} />
               </a>
                           
               ${photos.map((photo) => html`<a 
