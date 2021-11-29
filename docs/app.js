@@ -102,7 +102,7 @@ class App extends EventTarget {
   languageSwitcher () {
     return this.languages.map((language) => html`
       <button class="${'language-button ' + (language.code === this.language ? 'hidden' : '')}" value="${language.code}" onclick="${async () => this.changeLanguage(language.code)}">
-        <img src="${'/images/flag-' + language.code + '.svg'}" />
+        <img src="${'/images/flag-' + this.language + '.svg'}" />
       </button>
     `)
   }

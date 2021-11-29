@@ -2,6 +2,7 @@ import { render, html } from './web_modules/uhtml.js'
 import { fa } from './Helpers.js'
 import { faChevronRight, faShoppingCart, faTimes } from './web_modules/@fortawesome/free-solid-svg-icons.js'
 import { loadStripe } from './web_modules/@stripe/stripe-js.js';
+import PhotoSwipeLightbox from './photoswipe-lightbox.esm.js';
 
 const fixOrder = (number, total) => {
   number = parseInt(number)
@@ -69,6 +70,17 @@ class StripeCards extends HTMLElement {
   draw () {
     this.t = window.app.t
     render(this, this.template())
+
+    if (!this.photoswipe) {
+      this.photoswipe = new PhotoSwipeLightbox({
+        gallery: '.card',
+        children: 'a',
+        pswpModule: '/photoswipe.esm.js'
+      })
+
+      this.photoswipe.init()
+    }
+
   }
 
   template () {
@@ -81,22 +93,10 @@ class StripeCards extends HTMLElement {
 
   templateZoomedCard () {
     const zoomedProduct = this.products.find(product => product.zoom)
-    document.body.dataset.zoom = !!zoomedProduct
     const orientation = zoomedProduct ? zoomedProduct.metadata.orientation : null
 
-    return html`
-      ${zoomedProduct ? html`
-        <div 
-        onclick="${() => { zoomedProduct.zoom = false; this.draw() }}" 
-        class="zoomed-product" 
-        style="${'padding-bottom: ' + (orientation === 'portrait' ? 112.77 : 70.93) + '%;'}">
-          <div class="zoomed-product-image">
-            <img class="image" src="${'https://images.weserv.nl/?url=' + zoomedProduct.images[0]}">
-            <span class="image-description">${zoomedProduct.metadata.description}</span>
-          </div>
-        </div>
-      ` : ''}
-    `
+
+    return html``
   }
 
   templateButtonBuy () {
@@ -146,17 +146,30 @@ class StripeCards extends HTMLElement {
           const buyable = !('stock' in product.metadata && !product.metadata.stock)
           const limitReached = product.metadata.stock === 'disabled' || lineItem && product.metadata.stock && lineItem.quantity === parseInt(product.metadata.stock)
       
+          const photos = product.metadata.photos ? product.metadata.photos.split('\n').map(item => item.split('|')) : []
+
           return html.for(product)`
             <div index="${index}" order="${fixOrder(product.metadata.order, this.products.length)}" class="${'card' + (lineItem ? ' has-line-item' : '') + ' ' + orientation}">
               <h3 class="title">${product.name} ${product.metadata.status === 'new' ? html`<span class="new-product">${this.t`Nieuw`}</span>` : ''}</h3>
     
-              <div 
+              <a href=${'https://images.weserv.nl/?url=' + product.images[0]} 
+              data-pswp-width=${orientation === 'landscape' ? 1000 : 710} 
+              data-pswp-height=${orientation === 'landscape' ? 710 : 1000} 
+              target="_blank"
               style="${
                 'padding-bottom: ' + (orientation === 'portrait' ? 112.77 : 70.93) + '%; ' +
                 'background-image: url("https://images.weserv.nl/?w=' + (orientation === 'portrait' ? 600 : 700) + '&url=' + product.images[0] + '")'}" 
-              onclick="${() => { product.zoom = !product.zoom; this.draw() }}" 
-              class="image" aria-label=${product.metadata.seo}></div>
+              onclick="${() => { 
+                product.zoom = !product.zoom; 
+                this.draw() 
+              }}" 
+              class="image" aria-label=${product.metadata.seo}></a>
                           
+              ${photos.map((photo) => html`<a 
+              data-pswp-width=${photo[1] ?? 1000} 
+              data-pswp-height=${photo[2] ?? 1000} 
+              href=${'https://images.weserv.nl/?url=https://i.etsystatic.com/10232907/r/il/' + photo[0]}></a>`)}
+
               <div class="${'add-to-basket' + (limitReached ? ' disabled' : '')}">
                 <span class="price">${this.currencyFormat.format(lineItem ? price * lineItem.quantity : price)}</span>
     
