@@ -90,7 +90,10 @@ class StripeCards extends HTMLElement {
         onclick="${() => { zoomedProduct.zoom = false; this.draw() }}" 
         class="zoomed-product" 
         style="${'padding-bottom: ' + (orientation === 'portrait' ? 112.77 : 70.93) + '%;'}">
-          <img class="zoomed-product-image" src="${'https://images.weserv.nl/?url=' + zoomedProduct.images[0]}">
+          <div class="zoomed-product-image">
+            <img class="image" src="${'https://images.weserv.nl/?url=' + zoomedProduct.images[0]}">
+            <span class="image-description">${zoomedProduct.metadata.description}</span>
+          </div>
         </div>
       ` : ''}
     `
@@ -114,13 +117,22 @@ class StripeCards extends HTMLElement {
       ${totalQuantity ? html`<div class="buy-information">${totalQuantity} ${this.t`items, totaal:`} <strong class="price">${price}</strong><br><span class="shipping-costs">${this.t`excl. verzendkosten`}</span></div>` : html`
       <div class="buy-information">${this.t`Er zit nog niets in het winkelmandje.`}</div>`}
   
-      <button class="${'go-to-stripe-button' + (!totalPrice ? ' disabled' : '') + (this.isCreatingSession ? ' is-working' : '')}" onclick="${() => this.checkout()}">
-        ${this.isCreatingSession ? html`
-        <span class="text">${this.t`Bezig met doorsturen...`}</span>
-        ` : html`
-        <span class="text">${this.t`Naar winkelmand`}</span> ${fa(faChevronRight)}
-        `}
-      </button>
+      <div class="buttons-wrapper">
+        ${totalQuantity ? html`<span onclick=${() => {
+          this.basket.clear()
+          localStorage.setItem('state', this.serialize())
+          this.draw()
+        }} class="clear-cart">Winkelmand legen</span>` : html``}      
+
+        <button class="${'go-to-stripe-button' + (!totalPrice ? ' disabled' : '') + (this.isCreatingSession ? ' is-working' : '')}" onclick="${() => this.checkout()}">
+          ${this.isCreatingSession ? html`
+          <span class="text">${this.t`Bezig met doorsturen...`}</span>
+          ` : html`
+          <span class="text">${this.t`Naar winkelmand`}</span> ${fa(faChevronRight)}
+          `}
+        </button>
+
+      </div>
     </div>`
   }
 
@@ -143,7 +155,7 @@ class StripeCards extends HTMLElement {
                 'padding-bottom: ' + (orientation === 'portrait' ? 112.77 : 70.93) + '%; ' +
                 'background-image: url("https://images.weserv.nl/?w=' + (orientation === 'portrait' ? 600 : 700) + '&url=' + product.images[0] + '")'}" 
               onclick="${() => { product.zoom = !product.zoom; this.draw() }}" 
-              class="image"></div>
+              class="image" aria-label=${product.metadata.seo}></div>
                           
               <div class="${'add-to-basket' + (limitReached ? ' disabled' : '')}">
                 <span class="price">${this.currencyFormat.format(lineItem ? price * lineItem.quantity : price)}</span>
