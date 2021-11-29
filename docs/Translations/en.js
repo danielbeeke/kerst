@@ -9,6 +9,7 @@ export const Translations = {
   'items, totaal:': 'items, total:',
   'Bezig met doorsturen...': 'Redirecting...',
   'Naar winkelmand': 'To shopping basket',
+  'Winkelmand legen': 'Clear basket',
   'Niet meer<br>beschikbaar': 'Not<br>available',
   'Nog <strong>{stock}</strong> op<br>voorraad': 'Only <strong>{stock}</strong> left<br>in stock',
   'We gaan met uw bestelling aan de slag, ook hebben we een e-mail met de order bevestiging gestuurd.': 'We will start to process your order, we have also send you a confirmation mail.',

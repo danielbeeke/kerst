@@ -122,7 +122,7 @@ class StripeCards extends HTMLElement {
           this.basket.clear()
           localStorage.setItem('state', this.serialize())
           this.draw()
-        }} class="clear-cart">Winkelmand legen</span>` : html``}      
+        }} class="clear-cart">${this.t`Winkelmand legen`}</span>` : html``}      
 
         <button class="${'go-to-stripe-button' + (!totalPrice ? ' disabled' : '') + (this.isCreatingSession ? ' is-working' : '')}" onclick="${() => this.checkout()}">
           ${this.isCreatingSession ? html`
