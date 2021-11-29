@@ -163,7 +163,7 @@ class StripeCards extends HTMLElement {
                 this.draw() 
               }}" 
               class="image" aria-label=${product.metadata.seo}>
-              <img class="inner-image" src=${'https://images.weserv.nl/?url=' + product.images[0] + '&width=480'} />
+              <img class="inner-image" src=${'https://images.weserv.nl/?url=' + product.images[0] + '&width=680'} />
               </a>
                           
               ${photos.map((photo) => html`<a 
