@@ -407,12 +407,6 @@ html {
     opacity: .4;
 }
 
-@media only screen and (max-width: 720px) {
-    .card .image {
-        pointer-events: none;
-    }
-}
-
 .product {
     display: flex;
 
