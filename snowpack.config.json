@@ -1,7 +1,17 @@
 {
-  "scripts": {
-    "run:css": "postcss scss/*.scss --dir docs/css --ext css",
-    "run:css::watch": "$1 --watch",
-    "mount:public": "mount docs --to /"
+  "mount": {
+    "src": "/"
+  },
+  "plugins": [
+    "@snowpack/plugin-sass"
+  ],
+  "optimize": {
+    "bundle": true,
+    "minify": true,
+    "target": "es2018"
+  },
+  "buildOptions": {
+    "out": "docs"
   }
 }
+

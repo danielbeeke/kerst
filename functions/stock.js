@@ -3,24 +3,35 @@
 const settings = require('./settings.js')
 const request = require('./helpers.js').request
 
-async function _getStock (stripeApiKey) {
-  const products = await request('https://api.stripe.com/v1/products?limit=100', 'GET', null, stripeApiKey)
-  const prices = await request('https://api.stripe.com/v1/prices?limit=100', 'GET', null, stripeApiKey)
-  const promotionCodes = await request('https://api.stripe.com/v1/promotion_codes?limit=100', 'GET', null, stripeApiKey)
-  for (const product of products.data) {
-    product.prices = prices.data.filter(price => price.product === product.id && price.active)
-  }
+let cache = null
 
-  return {
-    statusCode: 200,
-    headers: {
-      'Access-Control-Allow-Origin': '*'
-    },
-    body: JSON.stringify({
-      products: products.data,
-      promotionCodes: promotionCodes.data
-    }),
+async function _getStock (stripeApiKey) {
+  
+  if (!cache) {
+    const productsPromise = request('https://api.stripe.com/v1/products?limit=100', 'GET', null, stripeApiKey)
+    const pricesPromise = request('https://api.stripe.com/v1/prices?limit=100', 'GET', null, stripeApiKey)
+    const promotionCodesPromise = request('https://api.stripe.com/v1/promotion_codes?limit=100', 'GET', null, stripeApiKey)
+    
+    const [products, prices, promotionCodes] = await Promise.all([productsPromise, pricesPromise, promotionCodesPromise])
+    
+    for (const product of products.data) {
+      product.prices = prices.data.filter(price => price.product === product.id && price.active)
+    }
+  
+    cache = {
+      statusCode: 200,
+      headers: {
+      'Cache-Control': 'max-age=300',
+        'Access-Control-Allow-Origin': '*'
+      },
+      body: JSON.stringify({
+        products: products.data,
+        promotionCodes: promotionCodes.data
+      }),
+    }  
   }
+  
+  return cache
 }
 
 // _getStock(settings.prodKey).then(console.log)

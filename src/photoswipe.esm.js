@@ -5082,4 +5082,3 @@ class PhotoSwipe extends PhotoSwipeBase {
 }
 
 export { Content, ImageContent, PhotoSwipe as default };
-//# sourceMappingURL=photoswipe.esm.js.map

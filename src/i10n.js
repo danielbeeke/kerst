@@ -39,7 +39,8 @@ export async function I10n (language, possibleLanguageCodes) {
   let translations = {};
   translations[language] = {};
   if (possibleLanguageCodes.includes(language)) {
-    translations[language] = (await import(`./Translations/${language}.js`)).Translations;
+    if (language === 'nl') translations[language] = (await import(`./Translations/nl.js`)).Translations;
+    if (language === 'en') translations[language] = (await import(`./Translations/en.js`)).Translations;
   }
 
   /**

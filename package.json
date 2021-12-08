@@ -12,12 +12,13 @@
     "@csstools/postcss-sass": "^4.0.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@snowpack/plugin-postcss": "^1.0.6",
+    "@snowpack/plugin-sass": "^1.4.0",
     "autoprefixer": "^10.0.1",
     "postcss": "^8.1.4",
     "postcss-cli": "^8.1.0",
     "postcss-nested": "^5.0.1",
     "postcss-scss": "^3.0.2",
-    "snowpack": "^2.15.1"
+    "snowpack": "^3.8.8"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^5.15.1",

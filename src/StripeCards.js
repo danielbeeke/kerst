@@ -175,11 +175,15 @@ class StripeCards extends HTMLElement {
 
           return html.for(product)`
             <div index="${index}" order="${fixOrder(product.metadata.order, this.products.length)}" class="${'card' + (lineItem ? ' has-line-item' : '') + ' ' + orientation}">
-              <h3 class="title">${product.name} ${product.metadata.status === 'new' ? html`<span class="new-product">${this.t`Nieuw`}</span>` : ''}</h3>
+              <h2 class="title">
+              ${product.metadata.status === 'new' ? html`<span class="new-product">${this.t`Nieuw`}</span>` : ''}
+              ${product.name}
+              </h2>
     
               <a href=${'https://images.weserv.nl/?url=' + product.images[0]} 
               data-pswp-width=${orientation === 'landscape' ? 1000 : 710} 
               data-pswp-height=${orientation === 'landscape' ? 710 : 1000} 
+              rel="noopener"
               target="_blank"
               style="${
                 'padding-bottom: ' + (orientation === 'portrait' ? 112.77 : 70.93) + '%; '}" 
@@ -194,19 +198,21 @@ class StripeCards extends HTMLElement {
               ${photos.map((photo) => html`<a 
               data-pswp-width=${photo[1] ?? 1000} 
               data-pswp-height=${photo[2] ?? 1000} 
-              href=${'https://images.weserv.nl/?url=https://i.etsystatic.com/10232907/r/il/' + photo[0]}></a>`)}
+              aria-label=${photo}
+              href=${'https://images.weserv.nl/?url=https://i.etsystatic.com/10232907/r/il/' + photo[0]}>
+              </a>`)}
 
               <div class="${'add-to-basket' + (limitReached ? ' disabled' : '')}">
                 <span class="price">${this.currencyFormat.format(lineItem ? price * lineItem.quantity : price)}</span>
     
-                ${lineItem ? html`<button class="remove-product-button no-button" onclick="${() => {
+                ${lineItem ? html`<button aria-label="Verwijder uit winkelmandje"  class="remove-product-button no-button" onclick="${() => {
                   this.basket.delete(product);
                   localStorage.setItem('state', this.serialize())
                   this.draw()
                 }}">${fa(faTimes)}</button>` : ''}
     
                 ${buyable ? html`
-                  <button class="add-product-button no-button" onclick="${() => { this.increaseQuantityForProduct(product); this.draw() }}">
+                  <button aria-label="voeg toe aan winkelmandje" class="add-product-button no-button" onclick="${() => { this.increaseQuantityForProduct(product); this.draw() }}">
                     ${lineItem && lineItem.quantity ? html`<span class="quantity">${lineItem.quantity}</span>` : ''}
                     ${fa(faShoppingCart)}
                   </button>

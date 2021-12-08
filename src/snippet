@@ -1,0 +1,13 @@
+(await Promise.all([...document.querySelectorAll('[data-carousel-pagination-item] img')]
+    .map(img => img.src.replace('75x75', 'fullxfull'))
+    .map(fullUrl => {
+        return new Promise(resolve => {
+            const img = document.createElement('img')
+            img.onload = () => {
+                resolve(fullUrl.replace('https://i.etsystatic.com/10232907/r/il/', '') + '|' + img.naturalWidth + '|' + img.naturalHeight)
+            }
+
+            img.src = fullUrl
+        })
+
+    }))).join('\n')

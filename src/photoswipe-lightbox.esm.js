@@ -364,7 +364,7 @@ function lazyLoadSlide(index, instance) {
 }
 
 function dynamicImportModule(module) {
-  return typeof module === 'string' ? import(/* webpackIgnore: true */ module) : module;
+  return typeof module === 'string' ? import('/photoswipe.esm.js') : module;
 }
 
 /**
@@ -1065,4 +1065,3 @@ class PhotoSwipeLightbox extends PhotoSwipeBase {
 }
 
 export { Content, ImageContent, PhotoSwipeLightbox as default };
-//# sourceMappingURL=photoswipe-lightbox.esm.js.map
