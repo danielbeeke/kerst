@@ -6,7 +6,16 @@ import { I10n } from './i10n.js'
 
 import * as Sentry from './web_modules/@sentry/browser.js';
 import { Integrations } from './web_modules/@sentry/tracing.js';
-
+export const importGlobalScript = async (url, name) => {
+  return new Promise((resolve) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.onload = () => {
+          resolve(window[name])
+      }
+      document.head.appendChild(script)    
+  })    
+}
 Sentry.init({
   dsn: 'https://147c08fe304e48ac880f0b5404972201@o483393.ingest.sentry.io/5535945',
   integrations: [
@@ -128,3 +137,5 @@ class App extends EventTarget {
 }
 
 window.app = new App()
+
+
