@@ -31,7 +31,6 @@ let env = ['kerst.wilmavis.nl', 'shop.wilmavis.nl'].includes(location.hostname) 
 
 env = 'prod'
 
-if (localStorage.fakeProd) env = 'prod'
 const shopId = env === 'prod' ? shopIdProd : shopIdTest
 const awsApi = env === 'prod' ? 'https://5ml1hmy4s7.execute-api.eu-central-1.amazonaws.com' : 'https://znpinus3i4.execute-api.eu-central-1.amazonaws.com'
 
@@ -72,6 +71,7 @@ class App extends EventTarget {
         for  (const shippingCostsProduct of stripeCards.shippingCostsProducts) {
           if (!event.detail.shippingCostsProduct && parseInt(shippingCostsProduct.metadata.shippingCosts) <= stripeCards.totalQuantity()) {
             stripeCards.shippingCostsProduct = shippingCostsProduct
+            console.log(stripeCards.shippingCostsProduct)
           }
         }
       }}" category="postcard" env="${env}" src="./data.js" shop="${shopId}" aws-url="${awsApi}" />
