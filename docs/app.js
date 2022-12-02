@@ -582,11 +582,11 @@ Url: `+this._getEventFilterUrl(e)),!0)},c.prototype._isSentryError=function(e,a)
     `}};window.app=new T0;export{oa as importGlobalScript};
 /*!
   * PhotoSwipe 5.1.61 - https://photoswipe.com
-  * (c) 2021 Dmitry Semenov
+  * (c) 2022 Dmitry Semenov
   */
 /*!
   * PhotoSwipe Lightbox 5.1.61 - https://photoswipe.com
-  * (c) 2021 Dmitry Semenov
+  * (c) 2022 Dmitry Semenov
   */
 /*!
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
