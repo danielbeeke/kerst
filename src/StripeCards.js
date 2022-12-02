@@ -180,7 +180,7 @@ class StripeCards extends HTMLElement {
               ${product.name}
               </h2>
     
-              <a href=${'https://images.weserv.nl/?url=' + product.images[0]} 
+              <a href=${'https://images.mediaworks.global/?url=' + product.images[0]} 
               data-pswp-width=${orientation === 'landscape' ? 1000 : 710} 
               data-pswp-height=${orientation === 'landscape' ? 710 : 1000} 
               rel="noopener"
@@ -192,14 +192,14 @@ class StripeCards extends HTMLElement {
                 this.draw() 
               }}" 
               class="image" aria-label=${product.metadata.seo}>
-              <img alt=${product.metadata.description} class="inner-image" src=${'https://images.weserv.nl/?url=' + product.images[0] + '&width=680'} />
+              <img alt=${product.metadata.description} class="inner-image" src=${'https://images.mediaworks.global/?url=' + product.images[0] + '&width=680'} />
               </a>
                           
               ${photos.map((photo) => html`<a 
               data-pswp-width=${photo[1] ?? 1000} 
               data-pswp-height=${photo[2] ?? 1000} 
               aria-label=${photo}
-              href=${'https://images.weserv.nl/?url=https://i.etsystatic.com/10232907/r/il/' + photo[0]}>
+              href=${'https://images.mediaworks.global/?url=https://i.etsystatic.com/10232907/r/il/' + photo[0]}>
               </a>`)}
 
               <div class="${'add-to-basket' + (limitReached ? ' disabled' : '')}">
