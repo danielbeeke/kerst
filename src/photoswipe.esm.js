@@ -1,6 +1,6 @@
 /*!
   * PhotoSwipe 5.1.61 - https://photoswipe.com
-  * (c) 2021 Dmitry Semenov
+  * (c) 2022 Dmitry Semenov
   */
 /**
   * Creates element and optionally appends it to another.
