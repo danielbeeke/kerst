@@ -18,7 +18,7 @@ What is nicer than a beautiful postcard landing on your doormat?
 These colorful cards are perfect to send as a Christmas card or to wish someone a happy new year.
   </p>
 
-  <strong>Details</strong><ul>
+  <strong>Details Christmas cards</strong><ul>
       <li>A6 format (148 x 105 mm)</li>
       <li>350 grams paper</li>
       <li>Full color print</li>

@@ -3,7 +3,7 @@ export const Translations = {
     Wat is er nu leuker dan een mooie kaart op de mat? Speciaal voor kerst, om iemand een gelukkig nieuwjaar te wensen, of gewoon zomaar.
     </p>
 
-    <strong>Details</strong><ul>
+    <strong>Details kerstkaarten</strong><ul>
         <li>A6 formaat (148 x 105 mm)</li>
         <li>350 grams papier</li>
         <li>Full color print</li>

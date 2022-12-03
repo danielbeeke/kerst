@@ -33,7 +33,7 @@ class StripeCards extends HTMLElement {
     Object.assign(this, stock)
 
     this.products = this.products
-    .filter(product => product.active && product.metadata.category === this.category)
+    .filter(product => product.active /** && product.metadata.category === this.category */)
 
     this.shippingCostsProducts = this.products
       .filter(product => product.metadata.category === this.category && product.metadata.shippingCosts)
