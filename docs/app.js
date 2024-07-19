@@ -522,7 +522,7 @@ Error: `+s)}}}catch(s){a={error:s}}finally{try{r&&!r.done&&(t=i.return)&&t.call(
               ${e.name}
               </h2>
     
-              <a href=${"https://images.mediaworks.global/?url="+e.images[0]} 
+              <a href=${"https://wsrv.nl/?url="+e.images[0]} 
               data-pswp-width=${r==="landscape"?1e3:710} 
               data-pswp-height=${r==="landscape"?710:1e3} 
               rel="noopener"
@@ -530,14 +530,14 @@ Error: `+s)}}}catch(s){a={error:s}}finally{try{r&&!r.done&&(t=i.return)&&t.call(
               style="${"padding-bottom: "+(r==="portrait"?112.77:70.93)+"%; "}" 
               onclick="${()=>{e.zoom=!e.zoom,this.draw()}}" 
               class="image" aria-label=${e.metadata.seo}>
-              <img alt=${e.metadata.description} class="inner-image" src=${"https://images.mediaworks.global/?url="+e.images[0]+"&width=680"} />
+              <img alt=${e.metadata.description} class="inner-image" src=${"https://wsrv.nl/?url="+e.images[0]+"&width=680"} />
               </a>
                           
               ${o.map(l=>{var h,m;return C`<a 
               data-pswp-width=${(h=l[1])!=null?h:1e3} 
               data-pswp-height=${(m=l[2])!=null?m:1e3} 
               aria-label=${l}
-              href=${"https://images.mediaworks.global/?url=https://i.etsystatic.com/10232907/r/il/"+l[0]}>
+              href=${"https://wsrv.nl/?url=https://i.etsystatic.com/10232907/r/il/"+l[0]}>
               </a>`})}
 
               <div class="${"add-to-basket"+(s?" disabled":"")}">
@@ -578,7 +578,7 @@ Url: `+this._getEventFilterUrl(e)),!0)},c.prototype._isSentryError=function(e,a)
       <stripe-cards oncalculateshipping="${e=>{let a=e.detail;for(let t of a.shippingCostsProducts)!e.detail.shippingCostsProduct&&parseInt(t.metadata.shippingCosts)<=a.totalQuantity()&&(a.shippingCostsProduct=t,console.log(a.shippingCostsProduct))}}" category="postcard" env="${V2}" src="./data.js" shop="${ha}" aws-url="${va}" />
     `}templateSuccess(){return C`
       <div class="site-header">
-      <img class="site-logo" alt="Roze logo Wilma Vis" src="https://images.mediaworks.global/?url=https://stripe-camo.global.ssl.fastly.net/722739ee9f71a98ed5959ee092f39f53c839a944/68747470733a2f2f66696c65732e7374726970652e636f6d2f66696c65732f4d44423859574e6a6446387853455234566d6445545464494e45314a6555513466475a6662476c325a56387865544e53616a597a6331644b557a424e526a5647546b7877576b566853545530307a70667a3033454e&w=180">
+      <img class="site-logo" alt="Roze logo Wilma Vis" src="https://wsrv.nl/?url=https://stripe-camo.global.ssl.fastly.net/722739ee9f71a98ed5959ee092f39f53c839a944/68747470733a2f2f66696c65732e7374726970652e636f6d2f66696c65732f4d44423859574e6a6446387853455234566d6445545464494e45314a6555513466475a6662476c325a56387865544e53616a597a6331644b557a424e526a5647546b7877576b566853545530307a70667a3033454e&w=180">
         <h1 class="site-title">${this.t`Kerstkaarten`}</h1>
         </div>
 
@@ -600,7 +600,7 @@ Url: `+this._getEventFilterUrl(e)),!0)},c.prototype._isSentryError=function(e,a)
       </button>
     `)}templateCancel(){return C`
       <div class="site-header">
-      <img class="site-logo" alt="Roze logo Wilma Vis" src="https://images.mediaworks.global/?url=https://stripe-camo.global.ssl.fastly.net/722739ee9f71a98ed5959ee092f39f53c839a944/68747470733a2f2f66696c65732e7374726970652e636f6d2f66696c65732f4d44423859574e6a6446387853455234566d6445545464494e45314a6555513466475a6662476c325a56387865544e53616a597a6331644b557a424e526a5647546b7877576b566853545530307a70667a3033454e&w=180">
+      <img class="site-logo" alt="Roze logo Wilma Vis" src="https://wsrv.nl/?url=https://stripe-camo.global.ssl.fastly.net/722739ee9f71a98ed5959ee092f39f53c839a944/68747470733a2f2f66696c65732e7374726970652e636f6d2f66696c65732f4d44423859574e6a6446387853455234566d6445545464494e45314a6555513466475a6662476c325a56387865544e53616a597a6331644b557a424e526a5647546b7877576b566853545530307a70667a3033454e&w=180">
         <h1 class="site-title">${this.t`Kerstkaarten`}</h1>
         </div>
 
